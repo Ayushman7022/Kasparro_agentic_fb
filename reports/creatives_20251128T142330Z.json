@@ -1,0 +1,318 @@
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_6b9471fc",
+    "creative_type": "image",
+    "headline": "ComfortMax: Engineered for All-Day Comfort",
+    "body": "Experience breathable, seamless comfort with our new men's collection. No ride-up guarantee! Shop now and feel the difference.",
+    "cta": "Shop Now",
+    "rationale": "Focuses on key selling points like comfort and no ride-up, appealing to everyday needs.",
+    "inspiration_refs": [
+      "creative_message_id_1",
+      "creative_message_id_8"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_8a49fd30",
+    "creative_type": "video",
+    "headline": "Workout Ready: ComfortMax Athletic Briefs",
+    "body": "Cooling mesh panels keep you comfortable during any workout. Men's athletic briefs you'll actually love. Try them today!",
+    "cta": "Learn More",
+    "rationale": "Highlights the athletic benefits and cooling technology, targeting active individuals.",
+    "inspiration_refs": [
+      "creative_message_id_3",
+      "creative_message_id_4"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_549cf7af",
+    "creative_type": "carousel",
+    "headline": "Upgrade Your Underwear Drawer",
+    "body": "3-Pack Deal! Breathable boxers, seamless trunks, and comfy briefs. Find your perfect fit with ComfortMax.",
+    "cta": "See Options",
+    "rationale": "Offers a variety of styles and a limited-time deal to encourage purchase.",
+    "inspiration_refs": [
+      "creative_message_id_11",
+      "creative_message_id_6"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_1b54c72a",
+    "creative_type": "text",
+    "headline": "20% Off Men's ComfortMax Inner Vests!",
+    "body": "Hot & comfy! Feel the difference with our breathable, wire-free inner vests. Limited time offer.",
+    "cta": "Buy Now",
+    "rationale": "Directly promotes a discount and highlights key features like breathability and wire-free design.",
+    "inspiration_refs": [
+      "creative_message_id_12",
+      "creative_message_id_15"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_5c45f4e9",
+    "creative_type": "image",
+    "headline": "ComfortMax: Engineered for All-Day Comfort",
+    "body": "Experience breathable, seamless comfort with our new men's collection. No ride-up guarantee! Shop now and feel the difference.",
+    "cta": "Shop Now",
+    "rationale": "Focuses on the core benefit of all-day comfort and addresses a common pain point (ride-up).",
+    "inspiration_refs": [
+      "creative_message_id_13",
+      "creative_message_id_9"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_c1ff4138",
+    "creative_type": "video",
+    "headline": "Workout Ready: ComfortMax Athletic Briefs",
+    "body": "Cooling mesh panels keep you comfortable during any workout. Men's athletic briefs you'll actually love. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights the athletic benefits and uses a relatable statement.",
+    "inspiration_refs": [
+      "creative_message_id_3",
+      "creative_message_id_4"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_0fe9b4a5",
+    "creative_type": "carousel",
+    "headline": "Upgrade Your Underwear Drawer",
+    "body": "3-Pack Deal! Breathable comfort, seamless design. Men's boxers, briefs, and trunks available. Limited time offer!",
+    "cta": "Shop Now",
+    "rationale": "Offers a deal and highlights key features to encourage purchase.",
+    "inspiration_refs": [
+      "creative_message_id_11",
+      "creative_message_id_7"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_dfb2b163",
+    "creative_type": "text",
+    "headline": "ComfortMax: 20% Off Men's Inner Vests!",
+    "body": "Hot & comfy! Feel the difference with our breathable, wire-free inner vests. Limited time offer. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Directly promotes a discount and highlights key selling points.",
+    "inspiration_refs": [
+      "creative_message_id_12",
+      "creative_message_id_8"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_3f70fe1e",
+    "creative_type": "image",
+    "headline": "ComfortMax: Engineered for All-Day Comfort",
+    "body": "Experience breathable, seamless comfort with our new men's collection. No ride-up guarantee! Shop now and feel the difference.",
+    "cta": "Shop Now",
+    "rationale": "Focuses on key selling points like comfort and no ride-up, appealing to everyday needs.",
+    "inspiration_refs": [
+      "creative_message_id_1",
+      "creative_message_id_8"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_43c107f1",
+    "creative_type": "video",
+    "headline": "Workout Ready: ComfortMax Athletic Briefs",
+    "body": "Cooling mesh panels keep you comfortable during any workout. Men's athletic briefs you'll actually love. Try them today!",
+    "cta": "Learn More",
+    "rationale": "Highlights the athletic benefits and cooling technology, targeting active individuals.",
+    "inspiration_refs": [
+      "creative_message_id_3",
+      "creative_message_id_4"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_238e868f",
+    "creative_type": "carousel",
+    "headline": "Upgrade Your Underwear Drawer",
+    "body": "3-Pack Deal! Breathable boxers, seamless trunks, and comfy briefs. Find your perfect fit with ComfortMax.",
+    "cta": "See Options",
+    "rationale": "Offers a variety of styles and a limited-time deal to encourage purchase.",
+    "inspiration_refs": [
+      "creative_message_id_11",
+      "creative_message_id_6"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_90e2bc61",
+    "creative_type": "text",
+    "headline": "20% Off Men's ComfortMax Inner Vests!",
+    "body": "Hot & comfy! Feel the difference with our breathable, wire-free inner vests. Limited time offer.",
+    "cta": "Buy Now",
+    "rationale": "Directly promotes a discount and highlights key features like breathability and wire-free design.",
+    "inspiration_refs": [
+      "creative_message_id_12",
+      "creative_message_id_15"
+    ]
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_a6c0ce18",
+    "creative_type": "image",
+    "headline": "Premium Modal Comfort",
+    "body": "Experience the ultimate softness. Our premium modal underwear is designed for all-day comfort and support. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights the key selling point (comfort) and encourages immediate purchase.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_60c41fc2",
+    "creative_type": "video",
+    "headline": "Upgrade Your Underwear",
+    "body": "Say goodbye to discomfort! Premium modal fabric that breathes and moves with you.  Get 20% off your first order!",
+    "cta": "Learn More",
+    "rationale": "Focuses on upgrading from existing underwear and includes a discount incentive.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_24fb23a2",
+    "creative_type": "carousel",
+    "headline": "The Softest Underwear You'll Ever Wear",
+    "body": "Discover the difference of premium modal. Unmatched comfort, superior fit. Explore our collection.",
+    "cta": "Explore Now",
+    "rationale": "Uses a carousel format to showcase different styles and colors of the modal underwear.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_17c207c9",
+    "creative_type": "text",
+    "headline": "All-Day Comfort Guaranteed",
+    "body": "Premium modal underwear: breathable, supportive, and incredibly soft.  Try it risk-free with our satisfaction guarantee!",
+    "cta": "Shop Now",
+    "rationale": "Emphasizes the guarantee to reduce purchase hesitation.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_58434756",
+    "creative_type": "image",
+    "headline": "Premium Modal Comfort",
+    "body": "Experience the ultimate softness. Our premium modal underwear is designed for all-day comfort and support. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights the key selling point (comfort) and encourages immediate purchase.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_54f71bab",
+    "creative_type": "video",
+    "headline": "Upgrade Your Underwear",
+    "body": "Say goodbye to discomfort! Premium modal fabric that breathes and moves with you.  Get 20% off your first order!",
+    "cta": "Learn More",
+    "rationale": "Focuses on upgrading from existing underwear and includes a discount incentive.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_38032692",
+    "creative_type": "carousel",
+    "headline": "The Softest Underwear You'll Ever Wear",
+    "body": "Discover the difference of premium modal. Unmatched comfort, superior fit. Explore our collection.",
+    "cta": "Explore Now",
+    "rationale": "Uses a carousel format to showcase different styles and colors of the modal underwear.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_75f67deb",
+    "creative_type": "text",
+    "headline": "All-Day Comfort Guaranteed",
+    "body": "Premium modal underwear: breathable, supportive, and incredibly soft.  Try it risk-free with our satisfaction guarantee!",
+    "cta": "Shop Now",
+    "rationale": "Emphasizes the guarantee to reduce purchase hesitation.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_5ad10a57",
+    "creative_type": "image",
+    "headline": "Premium Modal Comfort",
+    "body": "Experience the ultimate softness. Our premium modal underwear is designed for all-day comfort and support. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights the key selling point (comfort) and encourages immediate purchase.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_fb16c492",
+    "creative_type": "video",
+    "headline": "Upgrade Your Underwear",
+    "body": "Say goodbye to discomfort! Premium modal fabric that breathes and moves with you.  Get 20% off your first order!",
+    "cta": "Learn More",
+    "rationale": "Focuses on upgrading from existing underwear and includes a discount incentive.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_b7074ee8",
+    "creative_type": "carousel",
+    "headline": "The Softest Underwear You'll Ever Wear",
+    "body": "Discover the difference of premium modal. Unmatched comfort, superior fit. Explore our collection.",
+    "cta": "Explore Now",
+    "rationale": "Uses a carousel format to showcase different styles and colors of the modal underwear.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_71e504c8",
+    "creative_type": "text",
+    "headline": "All-Day Comfort Guaranteed",
+    "body": "Premium modal underwear: breathable, supportive, and incredibly soft.  Try it risk-free with our satisfaction guarantee!",
+    "cta": "Shop Now",
+    "rationale": "Emphasizes the guarantee to reduce purchase hesitation.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_e087c3d0",
+    "creative_type": "image",
+    "headline": "Premium Modal Comfort",
+    "body": "Experience the ultimate softness. Our premium modal underwear is breathable, moves with you, and feels amazing all day. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights the key benefits of modal fabric: softness, breathability, and comfort.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_00aacf01",
+    "creative_type": "video",
+    "headline": "Upgrade Your Underwear",
+    "body": "Say goodbye to discomfort! Our premium modal collection offers unparalleled softness and support. Find your perfect fit today.",
+    "cta": "Find Your Fit",
+    "rationale": "Focuses on upgrading the user's underwear experience with a focus on fit and support.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_8f57de32",
+    "creative_type": "carousel",
+    "headline": "Modal Comfort, Your Way",
+    "body": "Explore our range of premium modal underwear: briefs, boxers, trunks, and vests. Unmatched softness and all-day comfort.",
+    "cta": "Explore Styles",
+    "rationale": "Showcases the variety of styles available in the modal collection.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_ac708649",
+    "creative_type": "text",
+    "headline": "The Softest Underwear You'll Ever Wear",
+    "body": "Discover the difference of premium modal. Unbelievably soft, breathable, and designed for all-day comfort. Try it today!",
+    "cta": "Try It Today",
+    "rationale": "Directly emphasizes the softness and encourages trial.",
+    "inspiration_refs": []
+  }
+]
