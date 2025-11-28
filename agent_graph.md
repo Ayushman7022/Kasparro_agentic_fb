@@ -43,29 +43,18 @@ H --> I[Final Outputs: insights.json, creatives.json, report.md, metadata.json]
 🎯 Goal: Convert a natural-language query into a structured, multi-step analytical plan.
 
 Inputs:
-
 User query (text)
-
 Data summary (from DataAgent)
 
 Outputs:
-
 List of tasks (TaskSchema), each with:
-
 id
-
 name
-
 type
-
 target metric
-
 scope
-
 priority
-
 depends_on
-
 output schema
 
 🧠 The planner sets the reasoning structure for the entire system.
@@ -81,17 +70,11 @@ Task description
 Data summary
 
 Outputs:
-
 List of hypotheses (Hypothesis model):
-
 hypothesis text
-
 driver (creative_fatigue, roas_drop, ctr_drop, etc.)
-
 initial confidence
-
 required checks
-
 supporting datapoints
 
 🧪 This agent is the system’s intelligent inference module.
@@ -107,31 +90,19 @@ Hypothesis
 DataAgent to fetch timeseries
 
 Methods used:
-
 Welch t-test
-
 Bootstrap p-value
-
 Cohen’s d effect size
-
 Relative % change
-
 Change-point detection
-
 Confidence recalibration
 
 Outputs:
-
 ValidationResult:
-
 status → VALIDATED / REFUTED / INCONCLUSIVE
-
 p-value
-
 effect size
-
 relative change
-
 confidence_final
 
 notes
@@ -143,27 +114,18 @@ notes
 🎯 Goal: Generate fresh, deduplicated creatives when evaluator confirms creative fatigue.
 
 Inputs:
-
 campaign scope
-
 sample creatives
-
 number of variations needed
 
 Outputs:
 
 JSON creatives:
-
 headline
-
 body
-
 CTA
-
 rationale
-
 creative_type
-
 creative_id
 
 🎨 This agent extends the insight pipeline into actionable creative strategy.
@@ -173,13 +135,9 @@ creative_id
 🎯 Goal: The factual reference. Provides clean data to all agents.
 
 Provides:
-
 Dataset summary
-
 Time-series (CTR/ROAS/Spends)
-
 Creative samples
-
 Grouped stats
 
 📚 Acts as the data layer of the system.
