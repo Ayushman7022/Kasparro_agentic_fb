@@ -255,18 +255,3 @@ Plus runtime logs in:
 
 logs/
 
-🏁 Conclusion
-
-This multi-agent architecture follows the exact structure required by the Kasparro assignment:
-
-Structured agent roles
-
-Planner → Insight → Evaluator loop
-
-Creative generation only when validated
-
-Modular, interpretable, extensible pipeline
-
-Fully aligned with the evaluation rubric
-
-The graph and workflow below prove the usage of a true agentic system rather than a monolithic script.
