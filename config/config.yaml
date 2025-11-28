@@ -1,0 +1,21 @@
+seed: 42
+
+llm:
+  provider: gemini
+  model: "gemini-2.0-flash"
+  temperature: 0.0
+  max_tokens: 1200
+
+thresholds:
+  ctr_drop_pct: 0.20         # 20% drop
+  roas_drop_pct: 0.15        # 15% drop
+  p_value_threshold: 0.05
+
+paths:
+  data: "data/x.csv"
+  out_dir: "reports"
+  logs_dir: "logs"
+
+retry:
+  llm_retries: 2
+  llm_backoff_sec: 1

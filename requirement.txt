@@ -1,0 +1,8 @@
+pandas==2.2.2
+numpy==1.26.2
+pydantic==2.5.1
+PyYAML==6.0
+scipy==1.11.2
+pytest==7.4.0
+# Optional (if using google gemini python client); you may replace with your provider's SDK
+google-generativeai==0.15.0
