@@ -38,55 +38,45 @@ Outputs will be written to:
 /logs/<run_id>/
 
 🧠 System Design (Short & Clear)
-                          ┌────────────────────────────────────────┐
-                          │               User Input                │
-                          │     (Prompt / Task / Query Request)     │
-                          └───────────────────────┬──────────────────┘
-                                                  │
-                                                  ▼
-                          ┌────────────────────────────────────────┐
-                          │               Orchestrator              │
-                          │     src/orchestrator/orchestrator.py    │
-                          │  - Routes tasks, manages pipeline flow  │
-                          └───────────────┬─────────────────────────┘
-                                          │
-                                          ▼
-        ┌──────────────────────────────┬───────────────────────────────┬──────────────────────────────┬──────────────────────────────┐
-        ▼                              ▼                               ▼                              ▼
-┌───────────────────────┐    ┌───────────────────────┐     ┌────────────────────────┐     ┌──────────────────────────┐
-│     Planner Agent      │    │      Data Agent       │     │      Insight Agent      │     │      Evaluator Agent      │
-│  src/agents/planner.py │    │ src/agents/data_agent │     │ src/agents/insight_agent│     │ src/agents/evaluator.py  │
-│ - Breaks task into     │    │ - Loads & validates    │    │ - Runs statistical         │    │ - Scores insights, validates  │
-│   structured steps     │    │   FB Ads dataset       │    │   tests, detects drops     │    │   hypotheses & outputs        │
-└─────────────┬──────────┘    └───────────────┬────────┘     └──────────────┬───────────┘     └──────────────┬───────────┘
-              │                                │                               │                            │
-              └──────────────────────────┬──────┴───────────────┬──────────────┴───────────────┬──────────────┘
-                                         │                      │                               │
-                                         ▼                      ▼                               ▼
-                          ┌──────────────────────┐   ┌────────────────────────┐      ┌──────────────────────────┐
-                          │    Creative Agent     │   │    Schema Validator    │      │        Utils Layer        │
-                          │ src/agents/creative_  │   │ src/utils/schema_      │      │ src/utils/                │
-                          │  agent.py             │   │ validator.py           │      │ - schemas.py              │
-                          │ - Generates creatives │   │ - Enforces YAML/JSON   │      │ - helpers, llm, logger    │
-                          └──────────────┬────────┘   └───────────────┬────────┘      └──────────────┬─────────┘
-                                         │                          │                               │
-                                         ▼                          ▼                               ▼
-                          ┌──────────────────────────────────────────────────────────────────────────────┐
-                          │                       Data Models / Schemas (YAML / JSON)                    │
-                          │                           config/data_schema.yaml                            │
-                          └─────────────────────────────────┬──────────────────────────────────────────────┘
-                                                            │
-                                                            ▼
-                                      ┌────────────────────────────────────────────────────┐
-                                      │            Orchestrator Output Layer               │
-                                      │   reports/, logs/<run_id>/, structured JSON/MD     │
-                                      └──────────────────────────────────┬─────────────────┘
-                                                                         │
-                                                                         ▼
-                                                  ┌────────────────────────────────────────┐
-                                                  │               User Output               │
-                                                  │     (Insights, Reports, Creatives)      │
-                                                  └────────────────────────────────────────┘
+                         flowchart TD
+
+    UserInput["User Input<br/>(Prompt / Task / Query)"]
+
+    Orchestrator["Orchestrator<br/>src/orchestrator/orchestrator.py<br/>- Routes tasks<br/>- Manages pipeline flow"]
+
+    Planner["Planner Agent<br/>src/agents/planner.py<br/>- Breaks task into steps"]
+    DataAgent["Data Agent<br/>src/agents/data_agent.py<br/>- Loads & validates FB Ads dataset"]
+    Insight["Insight Agent<br/>src/agents/insight_agent.py<br/>- Runs stats tests<br/>- Detects performance drops"]
+    Evaluator["Evaluator Agent<br/>src/agents/evaluator.py<br/>- Scores insights<br/>- Validates hypotheses"]
+
+    Creative["Creative Agent<br/>src/agents/creative_agent.py<br/>- Generates creatives"]
+    SchemaValidator["Schema Validator<br/>src/utils/schema_validator.py<br/>- Enforces YAML/JSON schema rules"]
+    Utils["Utils Layer<br/>src/utils/<br/>- schemas.py<br/>- llm.py<br/>- logger.py"]
+
+    Schemas["Data Models / Schemas<br/>config/data_schema.yaml"]
+
+    OutputLayer["Orchestrator Output Layer<br/>reports/, logs/<run_id>/, JSON/MD reports"]
+    UserOutput["User Output<br/>(Insights, Reports, Creatives)"]
+
+    UserInput --> Orchestrator
+
+    Orchestrator --> Planner
+    Orchestrator --> DataAgent
+    Orchestrator --> Insight
+    Orchestrator --> Evaluator
+
+    Planner --> Creative
+    DataAgent --> SchemaValidator
+    Insight --> Utils
+    Evaluator --> Utils
+
+    Creative --> Schemas
+    SchemaValidator --> Schemas
+    Utils --> Schemas
+
+    Schemas --> OutputLayer
+    OutputLayer --> UserOutput
+
 
 📁 Folder Structure
 kasparro-fb-analyst/
