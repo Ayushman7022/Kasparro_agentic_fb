@@ -2,6 +2,20 @@
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 from datetime import datetime
+# -----------------------------------------------------------
+# Dataset schema definition
+# -----------------------------------------------------------
+
+REQUIRED_DATASET_COLUMNS = [
+    "date",
+    "campaign_name",
+    "adset_name",
+    "spend",
+    "impressions",
+    "clicks",
+    "ctr",
+    "roas",
+]
 
 class TaskSchema(BaseModel):
     id: str
@@ -27,10 +41,13 @@ class Hypothesis(BaseModel):
 class ValidationResult(BaseModel):
     hypothesis_id: str
     validation: Dict[str, Any]
-    confidence_final: float = Field(ge=0.0, le=1.0)
+    evidence: Dict[str, Any] = {}    # NEW
+    impact: str = "medium"           # NEW
+    confidence_final: float
     status: str
-    notes: Optional[str]
+    notes: str
     evidence_refs: List[str] = []
+
 
 class CreativeCandidate(BaseModel):
     campaign: str

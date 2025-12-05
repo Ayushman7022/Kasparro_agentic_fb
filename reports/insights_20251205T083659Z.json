@@ -1,0 +1,794 @@
+[
+  {
+    "hypothesis_id": "hyp_roas_drop_campaign_1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "ROAS decline in campaign_1 is due to increasing CPM, eroding profitability despite stable CTR.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "ROAS is the target metric and has declined.",
+      "Spend data is available for campaign_1."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas_drop_campaign_1_audience",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "ROAS decline in campaign_1 is caused by audience fatigue, leading to lower conversion rates.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "ROAS is the target metric and has declined.",
+      "Campaign 1 has been running for at least 3 months (Jan-Mar)."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas_drop_campaign_1_creative",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "ROAS decline in campaign_1 is due to creative fatigue, resulting in lower CTR and conversion rates.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "ROAS is the target metric and has declined.",
+      "Campaign 1 has been running for at least 3 months (Jan-Mar)."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_ctr1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "CTR dropped in campaign_1 due to creative fatigue. Users are seeing the same ads repeatedly, leading to lower engagement.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "Campaign_1 is a top campaign, likely served frequently.",
+      "Date range is 3 months, providing ample time for fatigue."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_ctr2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "A significant CPM increase in campaign_1 has reduced the reach and frequency, leading to a lower CTR as the ads are shown to a less receptive audience.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "Campaign_1 is a top campaign, so CPM fluctuations have a large impact.",
+      "Overall spend is high, suggesting competitive bidding."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_ctr3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "The audience for campaign_1 has become saturated, resulting in a lower CTR as the same users are repeatedly targeted.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "Campaign_1 is a top campaign, indicating a large audience size.",
+      "Date range is 3 months, allowing for audience saturation."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_creative_fatigue_1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Creative fatigue within 'campaign_1' is causing CTR to decline as users are repeatedly exposed to the same creative messages.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "Overall CTR is down in the last 2 weeks.",
+      "Campaign_1 is a top campaign by spend."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_message_redundancy_2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "The creative messages used in 'campaign_1' may have become redundant or less appealing, leading to a decrease in CTR.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "CTR for campaign_1 is below average compared to other campaigns.",
+      "The same creative messages have been running for an extended period."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_audience_overlap_3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Audience overlap across different ad sets or campaigns may be causing ad fatigue and reduced CTR for 'campaign_1'.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "Campaign_1 targets a broad audience.",
+      "Other campaigns are also targeting similar demographics."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_aud1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Audience saturation within 'campaign_1' is causing diminishing ROAS.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "ROAS declining in recent weeks for campaign_1",
+      "No significant audience expansion or refresh in campaign_1 recently"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_aud2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_shift using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "A shift in the demographic mix within 'campaign_1' (e.g., age, gender, interests) is negatively impacting ROAS.",
+    "driver": "audience_shift",
+    "supporting_data_points": [
+      "ROAS declining in recent weeks for campaign_1",
+      "No recent changes to targeting settings were recorded"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_aud3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Increased competition for the target audience of 'campaign_1' is driving up CPM and reducing ROAS.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "CPM increasing in recent weeks for campaign_1",
+      "ROAS declining in recent weeks for campaign_1"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas_drop_men_premium_modal_1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "ROAS decreased in 'Men Premium Modal' campaign due to creative fatigue, leading to lower CTR and conversion rates.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "Top campaign by spend: Men Premium Modal",
+      "Date range: 2025-01-01 to 2025-03-31"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas_drop_men_premium_modal_2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=spend_shift using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "A shift in spend allocation away from 'Men Premium Modal' to other campaigns (e.g., 'Men Bold Colors Drop') caused the ROAS decline.",
+    "driver": "spend_shift",
+    "supporting_data_points": [
+      "Top campaign by spend: Men Premium Modal",
+      "Other top campaigns: Men Bold Colors Drop, MEN Signature Soft"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas_drop_men_premium_modal_3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Increased CPMs across the platform negatively impacted the ROAS of the 'Men Premium Modal' campaign.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "Top campaign by spend: Men Premium Modal",
+      "Date range: 2025-01-01 to 2025-03-31"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "ROAS drop in 'Men Bold Colors Drop' campaign is due to creative fatigue, as the same creatives have been running for an extended period.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "Campaign 'Men Bold Colors Drop' is a top spender.",
+      "Date range spans 3 months, increasing likelihood of creative fatigue."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Increased CPM is driving down ROAS for the 'Men Bold Colors Drop' campaign.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "Campaign 'Men Bold Colors Drop' is a top spender.",
+      "Overall ROAS is being targeted, suggesting a potential efficiency issue."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "A shift in audience mix within the 'Men Bold Colors Drop' campaign is leading to lower ROAS.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "Campaign 'Men Bold Colors Drop' is a top spender.",
+      "No specific audience information is available, making audience shift a plausible cause."
+    ]
+  }
+]

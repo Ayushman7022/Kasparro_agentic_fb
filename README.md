@@ -1,85 +1,130 @@
-Overview
+An end-to-end, production-style agentic system that analyzes Facebook Ads performance, identifies performance drops, validates hypotheses using statistical methods, and generates data-driven creative recommendations.
 
-This project implements a multi-agent FB Ads Intelligence System that analyzes ad performance, validates hypotheses using real data, and generates new creatives when needed.
-The system is built for the Kasparro Agentic Hackathon using a modular and extensible architecture.
+✅ Features (V2 Requirements Met)
 
-🧠 System Design (High-Level)----------------
-Architecture Flow
-User Query
-     ↓
-Planner Agent → creates structured tasks
-     ↓
-Insight Agent → generates hypotheses for each task
-     ↓
-Evaluator Agent → validates hypotheses with statistical tests
-     ↓
-Creative Agent → generates new creatives (only when fatigue validated)
-     ↓
-Orchestrator → compiles final insights, creatives & report
+✔ Schema validation using YAML + strict checks
 
-Agents-------------
-Planner Agent – Breaks down the query into actionable tasks.
+✔ Planner → Insight → Evaluator → Creative pipeline
 
-Insight Agent – Produces hypotheses based on tasks + data summary.
+✔ Robust evaluation: t-test / bootstrap, effect size, change-point detection
 
-Evaluator Agent – Validates hypotheses using t-tests, bootstrap, effect size, and change-point detection.
+✔ Impact scoring + structured evidence blocks
 
-Creative Agent – Generates fresh, deduplicated ad creatives for validated "creative_fatigue" hypotheses.
+✔ Per-agent logging with run-scoped log folder
 
-Data Agent – Loads data, provides summaries and timeseries.
+✔ JSON + Markdown reports
 
-Orchestrator – Controls the entire multi-agent pipeline and generates final outputs.
+✔ Git commit hash embedded in metadata
 
-📂 Project Structure-----------
-root/
-│── run.py
-│── README.md
-│── agent_graph.md
-│── config/
-│── prompts/
-│── data/
-│── logs/
-│── reports/
-└── src/
-    ├── agents/
-    ├── orchestrator/
-    └── utils/
+📦 Installation
+git clone <your-repo-url>
+cd kasparro-fb-analyst
+pip install -r requirements.txt
 
-▶️ How to Run-------------
-python run.py "Analyze CTR drop and creative fatigue"
+▶️ Running the System
+
+From the project root:
+
+python run.py "Analyze ROAS drop for campaign_1"
 
 
-Output files will be saved to the reports/ folder:---------------
-insights_<run_id>.json
+Outputs will be written to:
 
-creatives_<run_id>.json
+/reports/
+    insights_<run_id>.json
+    creatives_<run_id>.json
+    report_<run_id>.md
+    run_metadata_<run_id>.json
+/logs/<run_id>/
 
-report_<run_id>.md
+🧠 System Design (Short & Clear)
+Architecture (5–7 bullets)
 
-run_metadata_<run_id>.json
+Planner Agent
 
-Logs are saved in logs/.
+Converts the user query into structured tasks (JSON)
 
-🛠️ Tech Stack-------------
-Python 3.10+
+Applies dependency ordering
 
-Gemini 2.0 Flash (via google-generativeai)
+DataAgent
 
-Pandas, NumPy, SciPy
+Loads dataset, validates schema, produces summary
 
-Pydantic
+Provides campaign-level time series & creative samples
 
-Mermaid diagrams (for agent_graph.md)
+Insight Agent
 
-✔️ Features---------------
-Multi-agent architecture
+Computes local evidence (CTR deltas, means, change-points)
 
-JSON-consistent LLM prompting
+Combines heuristics + LLM prompting to produce hypotheses
 
-Robust statistical evaluation
+Evaluator Agent
 
-Automated creative generation
+Runs statistical tests (t-test / bootstrap)
 
-Rich markdown reporting
+Computes effect size, relative change, impact score
 
-Full logging + run metadata
+Returns ValidationResult with complete evidence block
+
+Creative Agent
+
+Generates creative variations for validated “creative_fatigue” insights
+
+Deduplication + retries + creative_id assignment
+
+Orchestrator
+
+Coordinates the entire pipeline
+
+Attaches logger, handles errors, writes artifacts, and builds reports
+
+Observability Layer
+
+Every agent produces local logs
+
+Metadata includes run ID, query, schema validity, and git commit hash
+
+📁 Folder Structure
+kasparro-fb-analyst/
+│
+├── src/
+│   ├── agents/
+│   │   ├── planner.py
+│   │   ├── data_agent.py
+│   │   ├── insight_agent.py
+│   │   ├── evaluator.py
+│   │   └── creative_agent.py
+│   │
+│   ├── orchestrator/
+│   │   └── orchestrator.py
+│   │
+│   ├── utils/
+│   │   ├── logger.py
+│   │   ├── llm.py
+│   │   ├── schemas.py
+│   │   └── schema_validator.py
+│
+├── prompts/
+├── config/
+│   ├── config.yaml
+│   └── data_schema.yaml
+│
+├── data/
+├── reports/
+└── logs/
+
+🧪 Example Output Snippet
+{
+  "hypothesis_id": "hyp_a13c7",
+  "status": "VALIDATED",
+  "impact": "high",
+  "confidence_final": 0.74,
+  "evidence": {
+    "baseline_ctr": 0.045,
+    "current_ctr": 0.030,
+    "ctr_delta_pct": -32.1,
+    "effect_size": -0.72,
+    "p_value": 0.004,
+    "change_point": 18
+  }
+}

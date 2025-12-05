@@ -1,0 +1,130 @@
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | PlannerAgent initialized.
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | CreativeAgent initialized.
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | Orchestrator initialized.
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | === Starting pipeline run ===
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | Query: Analyze ROAS drop for campaign_1
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | Validating dataset schema...
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | All required columns present: ['date', 'campaign_name', 'adset_name', 'creative_type', 'creative_message', 'spend', 'impressions', 'clicks', 'ctr', 'roas']
+2025-12-05 03:34:00 | WARNING | 20251204T220400Z | Extra columns detected (ignored): ['country', 'revenue', 'audience_type', 'platform', 'purchases']
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | ✅ Schema validation passed.
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | Schema validation passed
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | Generating data summary
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | Data summary generated
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | PlannerAgent: generating plan from LLM.
+2025-12-05 03:34:00 | DEBUG | 20251204T220400Z | PlannerAgent: constructing prompt from query + data summary.
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | PlannerAgent: building planning prompt.
+2025-12-05 03:34:00 | DEBUG | 20251204T220400Z | Planner prompt preview: You are the **Planner Agent** inside Kasparro’s Agentic Facebook Performance Analyst.  Your job is to decompose the user’s query into a set of structured, ordered, dependency-aware tasks that other agents (Insight, Evaluator, Creative Generator) will execute.  --- ## INPUTS - user_query (string) - data_summary (JSON)   Contains:     - dataset shape     - date range     - top campaigns by spend    
+2025-12-05 03:34:00 | INFO | 20251204T220400Z | [LLM] Attempt 1/3
+2025-12-05 03:34:00 | DEBUG | 20251204T220400Z | [LLM] Prompt:
+You are the **Planner Agent** inside Kasparro’s Agentic Facebook Performance Analyst.
+
+Your job is to decompose the user’s query into a set of structured, ordered, dependency-aware tasks that other agents (Insight, Evaluator, Creative Generator) will execute.
+
+---
+## INPUTS
+- user_query (string)
+- data_summary (JSON)
+  Contains:
+    - dataset shape
+    - date range
+    - top campaigns by spend
+    - aggregated metrics (ROAS, CTR)
+    - sample creatives
+    - country/platform distribution
+
+---
+## GOAL
+Produce a **single JSON object only** that contains:
+- the user query
+- timestamp
+- a list of tasks with dependencies
+- a complete plan description
+
+---
+## OUTPUT JSON SCHEMA
+
+{
+  "query": "<original_query>",
+  "generated_at": "<ISO8601>",
+  "plan_description": "<2-4 lines explaining the plan>",
+  "tasks": [
+    {
+      "id": "t1",
+      "name": "roas_time_series_analysis",
+      "type": "timeseries",
+      "target": "roas",
+      "scope": "all_campaigns or campaign_name",
+      "priority": 1,
+      "depends_on": [],
+      "expected_output_schema": {
+        "fields": ["date", "campaign_name", "roas", "spend", "impressions"]
+      }
+    },
+    {
+      "id": "t2",
+      "name": "ctr_change_point_detection",
+      "type": "metric_check",
+      "target": "ctr",
+      "scope": "all_campaigns",
+      "priority": 2,
+      "depends_on": ["t1"],
+      "expected_output_schema": {
+        "fields": ["date", "ctr", "clicks", "impressions"]
+      }
+    },
+    {
+      "id": "t3",
+      "name"
+2025-12-05 03:34:05 | DEBUG | 20251204T220400Z | [LLM] Response:
+```json {   "query": "Analyze ROAS drop for campaign_1",   "generated_at": "2024-01-27T10:33:22Z",   "plan_description": "The plan focuses on diagnosing the ROAS drop for campaign_1. It starts with a time series analysis of ROAS, followed by CTR change point detection to identify potential causes. Then, it investigates creative fatigue and audience drift, concluding with campaign-level diagnostics for the top campaigns.",   "tasks": [     {       "id": "t1",       "name": "roas_time_series_analysis",       "type": "timeseries",       "target": "roas",       "scope": "campaign_1",       "priority": 1,       "depends_on": [],       "expected_output_schema": {         "fields": ["date", "campaign_name", "roas", "spend", "impressions"]       }     },     {       "id": "t2",       "name": "ctr_change_point_detection",       "type": "metric_check",       "target": "ctr",       "scope": "campaign_1",       "priority": 2,       "depends_on": ["t1"],       "expected_output_schema": {         "f
+2025-12-05 03:34:05 | WARNING | 20251204T220400Z | [LLM] Could not extract token usage metadata
+2025-12-05 03:34:05 | DEBUG | 20251204T220400Z | Planner raw LLM output (first 300 chars): ```json
+{
+  "query": "Analyze ROAS drop for campaign_1",
+  "generated_at": "2024-01-27T10:33:22Z",
+  "plan_description": "The plan focuses on diagnosing the ROAS drop for campaign_1. It starts with a time series analysis of ROAS, followed by CTR change point detection to identify potential causes. T
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | PlannerAgent: extracted 6 tasks from LLM response.
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | Planner created 6 tasks
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | Executing task t1 ()
+2025-12-05 03:34:05 | ERROR | 20251204T220400Z | InsightAgent failed
+Traceback (most recent call last):
+  File "C:\Users\Ayushman\Desktop\Assessment\kasparro-fb-analyst\src\orchestrator\orchestrator.py", line 179, in run
+    hypotheses = self.insight_agent.generate(self.data_agent, data_summary, task.dict())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: InsightAgent.generate() takes 3 positional arguments but 4 were given
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | Executing task t2 ()
+2025-12-05 03:34:05 | ERROR | 20251204T220400Z | InsightAgent failed
+Traceback (most recent call last):
+  File "C:\Users\Ayushman\Desktop\Assessment\kasparro-fb-analyst\src\orchestrator\orchestrator.py", line 179, in run
+    hypotheses = self.insight_agent.generate(self.data_agent, data_summary, task.dict())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: InsightAgent.generate() takes 3 positional arguments but 4 were given
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | Executing task t3 ()
+2025-12-05 03:34:05 | ERROR | 20251204T220400Z | InsightAgent failed
+Traceback (most recent call last):
+  File "C:\Users\Ayushman\Desktop\Assessment\kasparro-fb-analyst\src\orchestrator\orchestrator.py", line 179, in run
+    hypotheses = self.insight_agent.generate(self.data_agent, data_summary, task.dict())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: InsightAgent.generate() takes 3 positional arguments but 4 were given
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | Executing task t4 ()
+2025-12-05 03:34:05 | ERROR | 20251204T220400Z | InsightAgent failed
+Traceback (most recent call last):
+  File "C:\Users\Ayushman\Desktop\Assessment\kasparro-fb-analyst\src\orchestrator\orchestrator.py", line 179, in run
+    hypotheses = self.insight_agent.generate(self.data_agent, data_summary, task.dict())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: InsightAgent.generate() takes 3 positional arguments but 4 were given
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | Executing task t5 ()
+2025-12-05 03:34:05 | ERROR | 20251204T220400Z | InsightAgent failed
+Traceback (most recent call last):
+  File "C:\Users\Ayushman\Desktop\Assessment\kasparro-fb-analyst\src\orchestrator\orchestrator.py", line 179, in run
+    hypotheses = self.insight_agent.generate(self.data_agent, data_summary, task.dict())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: InsightAgent.generate() takes 3 positional arguments but 4 were given
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | Executing task t6 ()
+2025-12-05 03:34:05 | ERROR | 20251204T220400Z | InsightAgent failed
+Traceback (most recent call last):
+  File "C:\Users\Ayushman\Desktop\Assessment\kasparro-fb-analyst\src\orchestrator\orchestrator.py", line 179, in run
+    hypotheses = self.insight_agent.generate(self.data_agent, data_summary, task.dict())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: InsightAgent.generate() takes 3 positional arguments but 4 were given
+2025-12-05 03:34:05 | INFO | 20251204T220400Z | === Pipeline completed successfully ===

@@ -44,24 +44,31 @@ class PlannerAgent:
 
         if self.logger:
             self.logger.info("PlannerAgent: generating plan from LLM.")
+            self.logger.debug("PlannerAgent: constructing prompt from query + data summary.")
 
+        # ---- Build prompt ----
         prompt = self._build_prompt(query, data_summary)
 
-        # ---- Gemini call ----
+        if self.logger:
+            snippet = prompt[:400].replace("\n", " ")
+            self.logger.debug(f"Planner prompt preview: {snippet}")
+
+        # ---- Call LLM ----
         resp = self.llm.safe_generate(prompt, retries=self.retries)
         text = resp.get("text", "")
 
         if self.logger:
-            self.logger.debug(f"PlannerAgent: LLM raw output snippet: {text[:600]}")
+            self.logger.debug(f"Planner raw LLM output (first 300 chars): {text[:300]}")
 
         # ---- Extract JSON ----
         parsed, err = extract_json_from_text(text)
 
-        if parsed is None:
+        if parsed is None or not isinstance(parsed, dict):
             if self.logger:
-                self.logger.warning("PlannerAgent: JSON parsing failed. Using fallback plan.")
+                self.logger.warning(f"PlannerAgent: JSON parsing failed → {err}")
             return self._fallback_plan(query)
 
+        # ---- Parse tasks ----
         try:
             tasks = []
             for t in parsed.get("tasks", []):
@@ -79,7 +86,7 @@ class PlannerAgent:
                 )
 
             if self.logger:
-                self.logger.info(f"PlannerAgent: built {len(tasks)} tasks from LLM.")
+                self.logger.info(f"PlannerAgent: extracted {len(tasks)} tasks from LLM response.")
 
             return PlanOutput(
                 query=parsed.get("query", query),
@@ -91,7 +98,6 @@ class PlannerAgent:
         except Exception as e:
             if self.logger:
                 self.logger.error(f"PlannerAgent: validation error — {e}")
-
             return self._fallback_plan(query)
 
     # -------------------------------------------

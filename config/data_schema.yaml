@@ -1,0 +1,23 @@
+required_columns:
+  - date
+  - campaign_name
+  - adset_name
+  - creative_type
+  - creative_message
+  - spend
+  - impressions
+  - clicks
+  - ctr
+  - roas
+
+dtypes:
+  date: datetime
+  campaign_name: str
+  adset_name: str
+  creative_type: str
+  creative_message: str
+  spend: float
+  impressions: int
+  clicks: int
+  ctr: float
+  roas: float

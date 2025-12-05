@@ -25,6 +25,7 @@ DEFAULTS = {
 # UTILITY METHODS
 # -------------------------
 
+
 def cohen_d(a: np.ndarray, b: np.ndarray) -> float:
     a = np.asarray(a, dtype=float)
     b = np.asarray(b, dtype=float)
@@ -85,14 +86,16 @@ def simple_change_point(ts_values: np.ndarray, window: int = 7) -> Dict[str, Any
             best_rel = rel
             best_idx = idx
 
-    res["best_split"] = best_idx
+    res["best_split"] = int(best_idx) if best_idx is not None else None
     res["relative_change"] = float(best_rel)
     res["method_note"] = f"rolling-window({window}) heuristic"
     return res
 
+
 # -------------------------
 # MAIN AGENT
 # -------------------------
+
 
 class EvaluatorAgent:
     """
@@ -104,7 +107,6 @@ class EvaluatorAgent:
         thresh = self.config.get("thresholds", {})
 
         self.logger = None  # Will be attached by orchestrator
-        # evaluator does NOT receive llm_client, so orchestrator must manually copy logger
 
         # thresholds
         self.p_value_threshold = thresh.get("p_value_threshold", DEFAULTS["p_value_threshold"])
@@ -115,6 +117,41 @@ class EvaluatorAgent:
         self.change_point_relative_threshold = thresh.get("change_point_relative_threshold", DEFAULTS["change_point_relative_threshold"])
 
     # --------------------------------------------------------
+    def _build_evidence(self, baseline_mean, test_mean, p_value, effect_size, change_point, n_baseline, n_test):
+        """Build V2 evidence block."""
+        delta_pct = None
+        if baseline_mean not in (None, 0):
+            delta_pct = ((test_mean - baseline_mean) / baseline_mean) * 100.0
+
+        return {
+            "baseline_ctr": baseline_mean,
+            "current_ctr": test_mean,
+            "ctr_delta_pct": delta_pct,
+            "effect_size": effect_size,
+            "p_value": p_value,
+            "n_baseline": int(n_baseline) if n_baseline is not None else None,
+            "n_test": int(n_test) if n_test is not None else None,
+            "change_point": change_point
+        }
+
+    def _compute_impact(self, delta_pct, effect_size, p_value):
+        """Impact score based on effect size, relative drop, and statistical strength."""
+        if delta_pct is None:
+            return "medium"
+
+        delta = abs(delta_pct)
+        eff = abs(effect_size)
+
+        # High impact
+        if delta > 25 and eff > 0.5 and p_value < 0.05:
+            return "high"
+
+        # Medium impact
+        if delta > 10 and eff > 0.3:
+            return "medium"
+
+        return "low"
+
     def _prepare_series(self, data_agent, scope: str, metric: str = "ctr"):
         if self.logger:
             self.logger.info(f"Evaluator: preparing time series for metric={metric}, scope={scope}")
@@ -125,12 +162,28 @@ class EvaluatorAgent:
                 metric=metric
             )
 
-            if metric not in ts.columns:
+            # If DataAgent returns (df, err) style in some implementations, handle that
+            if isinstance(ts, tuple) and len(ts) == 2:
+                df, err = ts
+                if err:
+                    if self.logger:
+                        self.logger.warning(f"Evaluator: data_agent.get_time_series reported error: {err}")
+                    return np.array([]), err
+                ts_df = df
+            else:
+                ts_df = ts
+
+            if ts_df is None or ts_df.empty:
+                if self.logger:
+                    self.logger.warning("Evaluator: timeseries empty.")
+                return np.array([]), "timeseries_empty"
+
+            if metric not in ts_df.columns:
                 if self.logger:
                     self.logger.warning("Evaluator: metric missing in dataset.")
                 return np.array([]), "metric_missing"
 
-            return ts[metric].astype(float).values, None
+            return ts_df[metric].astype(float).values, None
 
         except Exception as e:
             if self.logger:
@@ -188,6 +241,10 @@ class EvaluatorAgent:
 
     # --------------------------------------------------------
     def validate(self, hypothesis, data_agent) -> ValidationResult:
+        """
+        Validate a single hypothesis against data provided by data_agent.
+        Returns a ValidationResult (Pydantic model).
+        """
 
         hyp_id = getattr(hypothesis, "id", "unknown")
         driver = getattr(hypothesis, "driver", None)
@@ -195,6 +252,14 @@ class EvaluatorAgent:
 
         if self.logger:
             self.logger.info(f"Evaluator: validating hypothesis {hyp_id} (driver={driver})")
+
+        # initialize locals for safe exception handling
+        baseline_mean = None
+        test_mean = None
+        relative_change_pct = None
+        effect_size = 0.0
+        p_value = 1.0
+        cp = {"best_split": None, "relative_change": 0.0, "method_note": ""}
 
         try:
             # ----------------------------------
@@ -210,6 +275,8 @@ class EvaluatorAgent:
                 return ValidationResult(
                     hypothesis_id=hyp_id,
                     validation={"error": err or "too few samples"},
+                    evidence={},
+                    impact="low",
                     confidence_final=0.2,
                     status="INCONCLUSIVE",
                     notes=f"Insufficient data for evaluation (driver={driver})",
@@ -230,36 +297,45 @@ class EvaluatorAgent:
                 p_value = bootstrap_pvalue(baseline, test, n_iter=self.bootstrap_iters)
                 method = "bootstrap"
 
-            baseline_mean = float(np.nanmean(baseline))
-            test_mean = float(np.nanmean(test))
+            baseline_mean = float(np.nanmean(baseline)) if baseline.size > 0 else 0.0
+            test_mean = float(np.nanmean(test)) if test.size > 0 else 0.0
             relative_change_pct = ((test_mean - baseline_mean) / max(1e-9, baseline_mean)) * 100
-            effect_size = cohen_d(baseline, test)
+            effect_size = float(cohen_d(baseline, test))
 
             # change point
             cp = simple_change_point(values, window=self.rolling_window_days)
 
             if self.logger:
                 self.logger.info(
-                    f"Evaluator stats → p={p_value}, rel={relative_change_pct:.2f}%, d={effect_size}, baseline={baseline_mean}, test={test_mean}"
+                    f"Evaluator stats → p={p_value:.6f}, rel={relative_change_pct:.2f}%, d={effect_size:.4f}, baseline={baseline_mean}, test={test_mean}"
                 )
+                self.logger.debug(f"Change-point: {cp}")
 
             status = self._decide_status(p_value, relative_change_pct, effect_size, n_total)
             final_conf = self._calibrate_confidence(initial_conf, p_value, effect_size, n_total)
 
+            # build validation object and evidence
+            validation_obj = {
+                "metric": "ctr",
+                "method": method,
+                "baseline_mean": baseline_mean,
+                "test_mean": test_mean,
+                "relative_change_pct": relative_change_pct,
+                "p_value": p_value,
+                "effect_size": effect_size,
+                "n_baseline": len(baseline),
+                "n_test": len(test),
+                "change_point": cp
+            }
+
+            evidence = self._build_evidence(baseline_mean, test_mean, p_value, effect_size, cp, len(baseline), len(test))
+            impact = self._compute_impact(evidence.get("ctr_delta_pct"), evidence.get("effect_size"), evidence.get("p_value"))
+
             result = ValidationResult(
                 hypothesis_id=hyp_id,
-                validation={
-                    "metric": "ctr",
-                    "method": method,
-                    "baseline_mean": baseline_mean,
-                    "test_mean": test_mean,
-                    "relative_change_pct": relative_change_pct,
-                    "p_value": p_value,
-                    "effect_size": effect_size,
-                    "n_baseline": len(baseline),
-                    "n_test": len(test),
-                    "change_point": cp
-                },
+                validation=validation_obj,
+                evidence=evidence,
+                impact=impact,
                 confidence_final=final_conf,
                 status=status,
                 notes=f"Evaluated driver={driver} using {method}",
@@ -267,7 +343,7 @@ class EvaluatorAgent:
             )
 
             if self.logger:
-                self.logger.info(f"Evaluator: hypothesis {hyp_id} → {status} (conf={final_conf})")
+                self.logger.info(f"Evaluator: hypothesis {hyp_id} → {status} (conf={final_conf:.2f}, impact={impact})")
 
             return result
 
@@ -276,9 +352,12 @@ class EvaluatorAgent:
                 self.logger.error(f"Evaluator: exception during evaluation of {hyp_id} → {e}")
                 self.logger.error(traceback.format_exc())
 
+            # Safe fallback ValidationResult (no crashes, with error info)
             return ValidationResult(
                 hypothesis_id=hyp_id,
                 validation={"error": str(e)},
+                evidence={},
+                impact="low",
                 confidence_final=0.1,
                 status="INCONCLUSIVE",
                 notes=f"Exception during evaluation: {e}",

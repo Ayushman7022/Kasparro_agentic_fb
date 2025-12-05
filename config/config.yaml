@@ -15,6 +15,7 @@ paths:
   data: "data/x.csv"
   out_dir: "reports"
   logs_dir: "logs"
+  schema: config/data_schema.yaml
 
 retry:
   llm_retries: 2

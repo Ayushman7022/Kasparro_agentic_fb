@@ -1,0 +1,288 @@
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_4fe43ad6",
+    "creative_type": "image",
+    "headline": "ComfortMax: Engineered for Performance",
+    "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) appealing to active men.",
+    "inspiration_refs": [
+      "creative_message_id_5",
+      "creative_message_id_4"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_9f610a09",
+    "creative_type": "video",
+    "headline": "No Ride-Up, All-Day Comfort",
+    "body": "Our best-selling men's trunks are back! Featuring a no ride-up guarantee and superior comfort. Upgrade your underwear drawer today.",
+    "cta": "Learn More",
+    "rationale": "Addresses a common pain point (ride-up) and promotes the product's comfort and popularity.",
+    "inspiration_refs": [
+      "creative_message_id_2",
+      "creative_message_id_10"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_8ae6587d",
+    "creative_type": "carousel",
+    "headline": "The Ultimate Comfort Collection",
+    "body": "Explore our range of ComfortMax men's underwear: briefs, boxers, and trunks. Find your perfect fit for all-day support and breathability.",
+    "cta": "Explore Now",
+    "rationale": "Showcases the variety of products available and emphasizes the key benefits of comfort and support.",
+    "inspiration_refs": [
+      "creative_message_id_7",
+      "creative_message_id_15"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_8fa31995",
+    "creative_type": "UGC",
+    "headline": "Finally, Underwear I Actually Love!",
+    "body": "Cooling mesh panels make these men's boxers perfect for workouts. No more overheating! Seriously the best underwear I've ever owned.",
+    "cta": "See More",
+    "rationale": "Leverages user-generated content style to build trust and highlight the product's cooling and comfort features.",
+    "inspiration_refs": [
+      "creative_message_id_3",
+      "creative_message_id_9"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_91c1da5f",
+    "creative_type": "image",
+    "headline": "ComfortMax: Engineered for Performance",
+    "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) for a broad appeal.",
+    "inspiration_refs": [
+      "creative_message_id_5",
+      "creative_message_id_11"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_9eb14243",
+    "creative_type": "video",
+    "headline": "No Ride-Up, All-Day Comfort",
+    "body": "Our best-selling men's trunks are back! Enjoy a perfect fit and all-day comfort with our no ride-up guarantee. Limited stock!",
+    "cta": "Learn More",
+    "rationale": "Focuses on a specific benefit (no ride-up) and creates urgency with 'limited stock'.",
+    "inspiration_refs": [
+      "creative_message_id_2",
+      "creative_message_id_10"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_7d420963",
+    "creative_type": "carousel",
+    "headline": "Upgrade Your Underwear Drawer",
+    "body": "3-Pack Deal Ends Tonight! Get premium ComfortMax men's boxers, briefs, and trunks at a special price. Don't miss out!",
+    "cta": "See Options",
+    "rationale": "Leverages a limited-time offer to drive immediate action and showcases product variety.",
+    "inspiration_refs": [
+      "creative_message_id_12"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_8b25293d",
+    "creative_type": "UGC",
+    "headline": "Finally, Underwear I Actually Love!",
+    "body": "Cooling mesh panels make these men's briefs perfect for workouts. No more overheating! Seriously the best.",
+    "cta": "Try It Now",
+    "rationale": "Uses a relatable, authentic voice to build trust and highlight a key feature (cooling mesh).",
+    "inspiration_refs": [
+      "creative_message_id_3",
+      "creative_message_id_9"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_4f1aa2c4",
+    "creative_type": "image",
+    "headline": "ComfortMax: Engineered for Performance",
+    "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) appealing to active men.",
+    "inspiration_refs": [
+      "creative_message_id_5",
+      "creative_message_id_4"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_e1b853e2",
+    "creative_type": "video",
+    "headline": "No Ride-Up, All-Day Comfort",
+    "body": "Our best-selling men's trunks are back! Featuring a no ride-up guarantee and superior comfort. Upgrade your underwear drawer today.",
+    "cta": "Learn More",
+    "rationale": "Addresses a common pain point (ride-up) and promotes the product's comfort and popularity.",
+    "inspiration_refs": [
+      "creative_message_id_2",
+      "creative_message_id_10"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_261e5620",
+    "creative_type": "carousel",
+    "headline": "The Ultimate Comfort Collection",
+    "body": "Explore our range of ComfortMax men's underwear: briefs, boxers, and trunks. Find your perfect fit for all-day support and breathability.",
+    "cta": "Explore Now",
+    "rationale": "Showcases the variety of products available and emphasizes the key benefits of comfort and support.",
+    "inspiration_refs": [
+      "creative_message_id_7",
+      "creative_message_id_15"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_c0832469",
+    "creative_type": "UGC",
+    "headline": "Finally, Underwear I Actually Love!",
+    "body": "Cooling mesh panels make these men's boxers perfect for workouts. No more overheating! Seriously the best underwear I've ever owned.",
+    "cta": "See More",
+    "rationale": "Leverages user-generated content style to build trust and highlight the product's cooling and comfort features.",
+    "inspiration_refs": [
+      "creative_message_id_3",
+      "creative_message_id_9"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_f393398f",
+    "creative_type": "image",
+    "headline": "ComfortMax: Engineered for Performance",
+    "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) for a broad appeal.",
+    "inspiration_refs": [
+      "creative_message_id_5",
+      "creative_message_id_11"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_6f475ced",
+    "creative_type": "video",
+    "headline": "No Ride-Up, All-Day Comfort",
+    "body": "Our best-selling men's trunks are back! Enjoy a perfect fit and all-day comfort with our no ride-up guarantee. Limited stock!",
+    "cta": "Learn More",
+    "rationale": "Focuses on a specific benefit (no ride-up) and creates urgency with 'limited stock'.",
+    "inspiration_refs": [
+      "creative_message_id_2",
+      "creative_message_id_10"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_6a467f34",
+    "creative_type": "carousel",
+    "headline": "Upgrade Your Underwear Drawer",
+    "body": "3-Pack Deal Ends Tonight! Get premium ComfortMax men's boxers, briefs, and trunks at a special price. Don't miss out!",
+    "cta": "See Options",
+    "rationale": "Leverages a limited-time offer to drive immediate action and showcases product variety.",
+    "inspiration_refs": [
+      "creative_message_id_12"
+    ]
+  },
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_29310d3d",
+    "creative_type": "UGC",
+    "headline": "Finally, Underwear I Actually Love!",
+    "body": "Cooling mesh panels make these men's briefs perfect for workouts. No more overheating! Seriously the best.",
+    "cta": "Try It Now",
+    "rationale": "Uses a relatable, authentic voice to build trust and highlight a key feature (cooling mesh).",
+    "inspiration_refs": [
+      "creative_message_id_3",
+      "creative_message_id_9"
+    ]
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_94955e31",
+    "creative_type": "image",
+    "headline": "Experience Premium Comfort",
+    "body": "Upgrade your underwear drawer with our luxuriously soft modal fabric. Breathable, supportive, and feels amazing all day. Shop now!",
+    "cta": "Shop Now",
+    "rationale": "Highlights the premium material and all-day comfort, key selling points for modal underwear.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_5b2e6ae5",
+    "creative_type": "video",
+    "headline": "The Ultimate in Softness",
+    "body": "Introducing our Premium Modal collection. Experience unmatched comfort and a perfect fit. Find your new favorite underwear today!",
+    "cta": "Learn More",
+    "rationale": "Focuses on the softness and fit, encouraging viewers to explore the collection.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_8edab428",
+    "creative_type": "carousel",
+    "headline": "Modal Comfort, Your Way",
+    "body": "Explore our range of Premium Modal underwear: briefs, boxers, and trunks. Find the perfect style for your ultimate comfort.",
+    "cta": "See Options",
+    "rationale": "Showcases the variety of styles available in the modal collection.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Premium Modal",
+    "creative_id": "cr_32faf852",
+    "creative_type": "text",
+    "headline": "Unbelievable Softness. Unbeatable Comfort.",
+    "body": "Treat yourself to our Premium Modal underwear. You won't believe how soft and comfortable they are. Shop the collection now!",
+    "cta": "Shop Now",
+    "rationale": "Simple and direct, emphasizing the key benefits of modal fabric.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Bold Colors Drop",
+    "creative_id": "cr_9d344fb1",
+    "creative_type": "image",
+    "headline": "Bold Colors. Unbeatable Comfort.",
+    "body": "Express yourself with our new collection of men's underwear in vibrant, bold colors. Experience the ComfortMax difference!",
+    "cta": "Shop Now",
+    "rationale": "This creative highlights the new product feature (bold colors) while reinforcing the ComfortMax brand promise.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Bold Colors Drop",
+    "creative_id": "cr_0b071088",
+    "creative_type": "video",
+    "headline": "Dare to be Bold. Feel the Comfort.",
+    "body": "Introducing our boldest colors yet!  ComfortMax men's underwear: breathable, supportive, and ready for anything. Shop the drop!",
+    "cta": "See the Colors",
+    "rationale": "Video format allows showcasing the colors in motion and emphasizes the feeling of comfort.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Bold Colors Drop",
+    "creative_id": "cr_e191a4ad",
+    "creative_type": "carousel",
+    "headline": "New Colors, Same ComfortMax Quality",
+    "body": "Upgrade your underwear drawer with our new bold colors.  Breathable, no ride-up, and designed for all-day comfort.",
+    "cta": "Explore Styles",
+    "rationale": "Carousel allows showcasing multiple colors and styles within the new collection.",
+    "inspiration_refs": []
+  },
+  {
+    "campaign": "Men Bold Colors Drop",
+    "creative_id": "cr_b11fe3d5",
+    "creative_type": "text",
+    "headline": "Bold Colors are Here!",
+    "body": "Stand out from the crowd with our new ComfortMax men's underwear in vibrant, bold colors. Shop now and express yourself!",
+    "cta": "Shop Now",
+    "rationale": "Simple and direct message focusing on the key selling point: the new bold colors.",
+    "inspiration_refs": []
+  }
+]

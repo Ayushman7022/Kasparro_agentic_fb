@@ -1,0 +1,664 @@
+[
+  {
+    "hypothesis_id": "hyp_roas_drop_1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "ROAS decline in 'Men Premium Modal' is due to increasing CPM, leading to less efficient spend.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "Targeting 'Men Premium Modal' campaign",
+      "ROAS is the target metric"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas_drop_2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "The ROAS drop is caused by audience fatigue within the 'Men Premium Modal' campaign, resulting in lower CTR and conversion rates.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "Targeting 'Men Premium Modal' campaign",
+      "ROAS is the target metric",
+      "Relatively long campaign duration (Jan-Mar)"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_roas_drop_3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=spend_shift using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "A shift in spend from 'Men Premium Modal' to other campaigns like 'Men Bold Colors Drop' has reduced the overall ROAS for the target campaign.",
+    "driver": "spend_shift",
+    "supporting_data_points": [
+      "Targeting 'Men Premium Modal' campaign",
+      "ROAS is the target metric",
+      "'Men Bold Colors Drop' is the second highest spending campaign"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_ctr1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "CTR dropped in 'Men Premium Modal' due to creative fatigue; users are seeing the same ads repeatedly.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "Campaign 'Men Premium Modal' is the top campaign by spend.",
+      "No new creatives launched recently for 'Men Premium Modal'."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_ctr2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=ctr_drop using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "A new, less engaging creative was introduced in 'Men Premium Modal', pulling down the overall CTR.",
+    "driver": "ctr_drop",
+    "supporting_data_points": [
+      "Overall CTR for 'Men Premium Modal' has decreased.",
+      "Campaign 'Men Premium Modal' is the top campaign by spend."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_ctr3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Audience saturation within the 'Men Premium Modal' campaign is causing CTR to decline.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "Campaign 'Men Premium Modal' is the top campaign by spend.",
+      "No recent audience expansion for 'Men Premium Modal'."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_creative_fatigue_men_modal",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "The 'Men Premium Modal' campaign is experiencing creative fatigue, leading to decreased CTR over time.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "The 'Men Premium Modal' campaign is a top spender.",
+      "Overall CTR may be declining in recent weeks."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_message_redundancy_men_modal",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "The creative messaging for 'Men Premium Modal' has become redundant, causing audience to tune out, resulting in lower CTR.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "The 'Men Premium Modal' campaign is a top spender.",
+      "Similar ad copy and visuals may be overused."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_cpm_increase_men_modal",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "CPM for the 'Men Premium Modal' campaign has increased, potentially due to increased competition or seasonality, impacting ROAS.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "The 'Men Premium Modal' campaign is a top spender.",
+      "CPM trends may be rising in the last few weeks."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_aud1",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Audience saturation within the 'Men Premium Modal' audience is causing diminishing returns.",
+    "driver": "audience_fatigue",
+    "supporting_data_points": [
+      "High spend in 'Men Premium Modal' campaign: $100371.84",
+      "Observed performance decline (inferred from task type audience_analysis and priority)"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_aud2",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Increased competition for the 'Men Premium Modal' audience is driving up CPM and reducing ROAS.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "High spend in 'Men Premium Modal' campaign: $100371.84",
+      "Observed performance decline (inferred from task type audience_analysis and priority)"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_aud3",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=audience_shift using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "A shift in the demographic composition within the 'Men Premium Modal' audience is impacting conversion rates.",
+    "driver": "audience_shift",
+    "supporting_data_points": [
+      "Observed performance decline (inferred from task type audience_analysis and priority)",
+      "Audience analysis task suggests a focus on audience-related issues"
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_modal_spend_shift",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=spend_shift using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Performance decline in 'Men Premium Modal' is due to a spend shift to other campaigns, reducing its reach and optimization opportunities.",
+    "driver": "spend_shift",
+    "supporting_data_points": [
+      "Men Premium Modal is the top campaign by spend.",
+      "Total spend across all campaigns is constant, suggesting reallocation."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_modal_creative_fatigue",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 1.0,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=creative_fatigue using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "The 'Men Premium Modal' campaign is suffering from creative fatigue, leading to lower CTR and ROAS as users are repeatedly exposed to the same ads.",
+    "driver": "creative_fatigue",
+    "supporting_data_points": [
+      "Campaign has been running since January 1st.",
+      "No recent creative updates mentioned."
+    ]
+  },
+  {
+    "hypothesis_id": "hyp_modal_cpm_increase",
+    "validation": {
+      "metric": "ctr",
+      "method": "t-test",
+      "baseline_mean": 0.013215516129032257,
+      "test_mean": 0.012733357142857143,
+      "relative_change_pct": -3.6484309917786097,
+      "p_value": 0.0001421836973069284,
+      "effect_size": -0.9094298421984244,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "evidence": {
+      "baseline_ctr": 0.013215516129032257,
+      "current_ctr": 0.012733357142857143,
+      "ctr_delta_pct": -3.6484309917786097,
+      "effect_size": -0.9094298421984244,
+      "p_value": 0.0001421836973069284,
+      "n_baseline": 62,
+      "n_test": 28,
+      "change_point": {
+        "best_split": 76,
+        "relative_change": -0.04238635861642434,
+        "method_note": "rolling-window(7) heuristic"
+      }
+    },
+    "impact": "low",
+    "confidence_final": 0.95,
+    "status": "VALIDATED",
+    "notes": "Evaluated driver=cpm_increase using t-test",
+    "evidence_refs": [],
+    "hypothesis_text": "Increased CPM for the 'Men Premium Modal' campaign is driving down ROAS, even if CTR and conversion rates remain stable.",
+    "driver": "cpm_increase",
+    "supporting_data_points": [
+      "Overall market CPM may have increased.",
+      "Competition for the target audience may have risen."
+    ]
+  }
+]

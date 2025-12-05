@@ -1,0 +1,758 @@
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | PlannerAgent initialized.
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | CreativeAgent initialized.
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | Orchestrator initialized.
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | === Starting pipeline run ===
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | Query: Analyze ROAS drop for campaign_1
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | Validating dataset schema...
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | All required columns present: ['date', 'campaign_name', 'adset_name', 'creative_type', 'creative_message', 'spend', 'impressions', 'clicks', 'ctr', 'roas']
+2025-12-05 14:06:59 | WARNING | 20251205T083659Z | Extra columns detected (ignored): ['audience_type', 'country', 'purchases', 'platform', 'revenue']
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | ✅ Schema validation passed.
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | Schema validation passed
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | Generating data summary
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | Data summary generated
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | PlannerAgent: generating plan from LLM.
+2025-12-05 14:06:59 | DEBUG | 20251205T083659Z | PlannerAgent: constructing prompt from query + data summary.
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | PlannerAgent: building planning prompt.
+2025-12-05 14:06:59 | DEBUG | 20251205T083659Z | Planner prompt preview: You are the **Planner Agent** inside Kasparro’s Agentic Facebook Performance Analyst.  Your job is to decompose the user’s query into a set of structured, ordered, dependency-aware tasks that other agents (Insight, Evaluator, Creative Generator) will execute.  --- ## INPUTS - user_query (string) - data_summary (JSON)   Contains:     - dataset shape     - date range     - top campaigns by spend    
+2025-12-05 14:06:59 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:06:59 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+You are the **Planner Agent** inside Kasparro’s Agentic Facebook Performance Analyst.
+
+Your job is to decompose the user’s query into a set of structured, ordered, dependency-aware tasks that other agents (Insight, Evaluator, Creative Generator) will execute.
+
+---
+## INPUTS
+- user_query (string)
+- data_summary (JSON)
+  Contains:
+    - dataset shape
+    - date range
+    - top campaigns by spend
+    - aggregated metrics (ROAS, CTR)
+    - sample creatives
+    - country/platform distribution
+
+---
+## GOAL
+Produce a **single JSON object only** that contains:
+- the user query
+- timestamp
+- a list of tasks with dependencies
+- a complete plan description
+
+---
+## OUTPUT JSON SCHEMA
+
+{
+  "query": "<original_query>",
+  "generated_at": "<ISO8601>",
+  "plan_description": "<2-4 lines explaining the plan>",
+  "tasks": [
+    {
+      "id": "t1",
+      "name": "roas_time_series_analysis",
+      "type": "timeseries",
+      "target": "roas",
+      "scope": "all_campaigns or campaign_name",
+      "priority": 1,
+      "depends_on": [],
+      "expected_output_schema": {
+        "fields": ["date", "campaign_name", "roas", "spend", "impressions"]
+      }
+    },
+    {
+      "id": "t2",
+      "name": "ctr_change_point_detection",
+      "type": "metric_check",
+      "target": "ctr",
+      "scope": "all_campaigns",
+      "priority": 2,
+      "depends_on": ["t1"],
+      "expected_output_schema": {
+        "fields": ["date", "ctr", "clicks", "impressions"]
+      }
+    },
+    {
+      "id": "t3",
+      "name"
+2025-12-05 14:07:05 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json {   "query": "Analyze ROAS drop for campaign_1",   "generated_at": "2024-01-27T10:33:22Z",   "plan_description": "The plan focuses on diagnosing the ROAS drop for campaign_1. It starts with a time series analysis of ROAS, followed by CTR change point detection to identify potential causes. Then, it investigates creative fatigue and audience drift, concluding with campaign-level diagnostics for the top campaigns.",   "tasks": [     {       "id": "t1",       "name": "roas_time_series_analysis",       "type": "timeseries",       "target": "roas",       "scope": "campaign_1",       "priority": 1,       "depends_on": [],       "expected_output_schema": {         "fields": ["date", "campaign_name", "roas", "spend", "impressions"]       }     },     {       "id": "t2",       "name": "ctr_change_point_detection",       "type": "metric_check",       "target": "ctr",       "scope": "campaign_1",       "priority": 2,       "depends_on": ["t1"],       "expected_output_schema": {         "f
+2025-12-05 14:07:05 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:05 | DEBUG | 20251205T083659Z | Planner raw LLM output (first 300 chars): ```json
+{
+  "query": "Analyze ROAS drop for campaign_1",
+  "generated_at": "2024-01-27T10:33:22Z",
+  "plan_description": "The plan focuses on diagnosing the ROAS drop for campaign_1. It starts with a time series analysis of ROAS, followed by CTR change point detection to identify potential causes. T
+2025-12-05 14:07:05 | INFO | 20251205T083659Z | PlannerAgent: extracted 6 tasks from LLM response.
+2025-12-05 14:07:05 | INFO | 20251205T083659Z | Planner created 6 tasks
+2025-12-05 14:07:05 | INFO | 20251205T083659Z | Executing task t1 ()
+2025-12-05 14:07:05 | INFO | 20251205T083659Z | InsightAgent: generating hypotheses for task t1 (None)
+2025-12-05 14:07:05 | DEBUG | 20251205T083659Z | InsightAgent: local evidence → {'note': 'timeseries_exception', 'error': "'tuple' object has no attribute 'empty'", 'metric': 'roas'}
+2025-12-05 14:07:05 | DEBUG | 20251205T083659Z | InsightAgent prompt preview: You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.  Your responsibility: - Given a task from the Planner Agent - And the dataset summary → Generate 2–5 high-quality hypotheses explaining performance changes.  --- ## INPUTS - TASK: the planner-defined diagnostic step (JSON) - DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries  ---
+2025-12-05 14:07:05 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:05 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.
+
+Your responsibility:
+- Given a task from the Planner Agent
+- And the dataset summary
+→ Generate 2–5 high-quality hypotheses explaining performance changes.
+
+---
+## INPUTS
+- TASK: the planner-defined diagnostic step (JSON)
+- DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries
+
+---
+## OUTPUT FORMAT (JSON array only)
+
+[
+  {
+    "id": "hyp_<uuid or short id>",
+    "hypothesis": "Short explanation of a plausible performance driver",
+    "driver": "creative_fatigue | audience_fatigue | spend_shift | cpm_increase | ctr_drop | conversion_drop | platform_issue | country_shift | seasonal_effect | other",
+    "initial_confidence": 0.0–1.0,
+    "supporting_data_points": [
+      "example: CTR down 24% vs previous 7-day",
+      "example: Spend moved from Campaign A to Campaign B"
+    ],
+    "required_checks": [
+      "ctr_time_series",
+      "frequency_trend",
+      "creative_impressions_split",
+      "country_mix_change",
+      "platform_split",
+      "roas_change_point"
+    ]
+  }
+]
+
+---
+## INSTRUCTIONS
+- Produce 2 to 5 hypotheses.
+- Use the TASK.type to specialize the reasoning:
+  - timeseries → trends, change-points, rising/falling patterns
+  - metric_check → CTR, CPM, CPC, CR, ROAS deviations
+  - creative_analysis → fatigue, message redundancy, low CTR creatives
+  - audience_check → shift in audience_type, saturation, overlap
+  - platform_check → Instagram vs Facebook
+2025-12-05 14:07:09 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "id": "hyp_roas_drop_campaign_1",     "hypothesis": "ROAS decline in campaign_1 is due to increasing CPM, eroding profitability despite stable CTR.",     "driver": "cpm_increase",     "initial_confidence": 0.7,     "supporting_data_points": [       "ROAS is the target metric and has declined.",       "Spend data is available for campaign_1."     ],     "required_checks": [       "cpm_time_series",       "ctr_time_series",       "roas_change_point"     ]   },   {     "id": "hyp_roas_drop_campaign_1_audience",     "hypothesis": "ROAS decline in campaign_1 is caused by audience fatigue, leading to lower conversion rates.",     "driver": "audience_fatigue",     "initial_confidence": 0.6,     "supporting_data_points": [       "ROAS is the target metric and has declined.",       "Campaign 1 has been running for at least 3 months (Jan-Mar)."     ],     "required_checks": [       "frequency_trend",       "roas_change_point",       "audience_overlap"     ]   },   {     "id": "
+2025-12-05 14:07:09 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:09 | DEBUG | 20251205T083659Z | InsightAgent LLM raw output preview: ```json
+[
+  {
+    "id": "hyp_roas_drop_campaign_1",
+    "hypothesis": "ROAS decline in campaign_1 is due to increasing CPM, eroding profitability despite stable CTR.",
+    "driver": "cpm_increase",
+    "initial_confidence": 0.7,
+    "supporting_data_points": [
+      "ROAS is the target metric and has declined.",
+      "Spend data is available for campaign_1."
+    ],
+    "required_checks": [
+      
+2025-12-05 14:07:09 | INFO | 20251205T083659Z | InsightAgent: final hypotheses generated → 3
+2025-12-05 14:07:09 | INFO | 20251205T083659Z | Generated 3 hypotheses
+2025-12-05 14:07:09 | INFO | 20251205T083659Z | CreativeAgent: Generating creatives for campaign_1
+2025-12-05 14:07:09 | DEBUG | 20251205T083659Z | Creative prompt built for campaign=campaign_1
+2025-12-05 14:07:09 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:09 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+Role: Creative Improvement Generator.
+
+INPUT:
+- creatives_sample (list of existing creative messages)
+- campaign metadata (campaign_name, audience_type, country)
+
+GOAL:
+For the given campaign produce up to 6 creative candidates following schema:
+
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_X",
+    "creative_type": "image|video|carousel|text",
+    "headline": "...",
+    "body": "... (<=140 chars)",
+    "cta": "e.g., Shop Now",
+    "rationale": "Why this works (one sentence)",
+    "inspiration_refs": ["creative_message_id_..."]
+  }
+]
+
+CONSTRAINTS:
+- No false claims.
+- Body <= 140 chars.
+- Use dataset tone and selling points when available.
+- Output JSON only.
+
+
+CAMPAIGN: campaign_1
+REQUIRED_VARIATIONS: 4
+
+SAMPLE_CREATIVES:
+[{'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message': 'Breathable organic cotton that moves with you — limited offer on men briefs.', 'ctr': 0.0183}, {'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Video', 'creative_message': 'No ride‑up guarantee — best‑selling men briefs back in stock.', 'ctr': 0.0197}, {'campaign_name': 'Men  ComfortMax  Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'UGC', 'creative_message': 'Cooling mesh panels for workouts — men boxers you’ll actually love.', 'ctr': 0.0211}, {'campaign_name': 'Men_ComfortMax_Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message
+2025-12-05 14:07:14 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",     "cta": "Shop Now",     "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) appealing to active men.",     "inspiration_refs": [       "creative_message_id_5",       "creative_message_id_4"     ]   },   {     "campaign": "campaign_1",     "creative_id": "cr_2",     "creative_type": "video",     "headline": "No Ride-Up, All-Day Comfort",     "body": "Our best-selling men's trunks are back! Featuring a no ride-up guarantee and superior comfort. Upgrade your underwear drawer today.",     "cta": "Learn More",     "rationale": "Addresses a common pain point (ride-up) and promotes the product's comfort and popularity.",     "inspiratio
+2025-12-05 14:07:14 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:14 | DEBUG | 20251205T083659Z | LLM output snippet: ```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Sh
+2025-12-05 14:07:14 | INFO | 20251205T083659Z | CreativeAgent: dedupe → 4 uniques
+2025-12-05 14:07:14 | INFO | 20251205T083659Z | CreativeAgent: Final creatives count = 4
+2025-12-05 14:07:14 | INFO | 20251205T083659Z | Executing task t2 ()
+2025-12-05 14:07:14 | INFO | 20251205T083659Z | InsightAgent: generating hypotheses for task t2 (None)
+2025-12-05 14:07:14 | DEBUG | 20251205T083659Z | InsightAgent: local evidence → {'note': 'timeseries_exception', 'error': "'tuple' object has no attribute 'empty'", 'metric': 'ctr'}
+2025-12-05 14:07:14 | DEBUG | 20251205T083659Z | InsightAgent prompt preview: You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.  Your responsibility: - Given a task from the Planner Agent - And the dataset summary → Generate 2–5 high-quality hypotheses explaining performance changes.  --- ## INPUTS - TASK: the planner-defined diagnostic step (JSON) - DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries  ---
+2025-12-05 14:07:14 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:14 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.
+
+Your responsibility:
+- Given a task from the Planner Agent
+- And the dataset summary
+→ Generate 2–5 high-quality hypotheses explaining performance changes.
+
+---
+## INPUTS
+- TASK: the planner-defined diagnostic step (JSON)
+- DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries
+
+---
+## OUTPUT FORMAT (JSON array only)
+
+[
+  {
+    "id": "hyp_<uuid or short id>",
+    "hypothesis": "Short explanation of a plausible performance driver",
+    "driver": "creative_fatigue | audience_fatigue | spend_shift | cpm_increase | ctr_drop | conversion_drop | platform_issue | country_shift | seasonal_effect | other",
+    "initial_confidence": 0.0–1.0,
+    "supporting_data_points": [
+      "example: CTR down 24% vs previous 7-day",
+      "example: Spend moved from Campaign A to Campaign B"
+    ],
+    "required_checks": [
+      "ctr_time_series",
+      "frequency_trend",
+      "creative_impressions_split",
+      "country_mix_change",
+      "platform_split",
+      "roas_change_point"
+    ]
+  }
+]
+
+---
+## INSTRUCTIONS
+- Produce 2 to 5 hypotheses.
+- Use the TASK.type to specialize the reasoning:
+  - timeseries → trends, change-points, rising/falling patterns
+  - metric_check → CTR, CPM, CPC, CR, ROAS deviations
+  - creative_analysis → fatigue, message redundancy, low CTR creatives
+  - audience_check → shift in audience_type, saturation, overlap
+  - platform_check → Instagram vs Facebook
+2025-12-05 14:07:18 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "id": "hyp_ctr1",     "hypothesis": "CTR dropped in campaign_1 due to creative fatigue. Users are seeing the same ads repeatedly, leading to lower engagement.",     "driver": "creative_fatigue",     "initial_confidence": 0.7,     "supporting_data_points": [       "Campaign_1 is a top campaign, likely served frequently.",       "Date range is 3 months, providing ample time for fatigue."     ],     "required_checks": [       "creative_impressions_split",       "frequency_trend",       "ctr_time_series"     ]   },   {     "id": "hyp_ctr2",     "hypothesis": "A significant CPM increase in campaign_1 has reduced the reach and frequency, leading to a lower CTR as the ads are shown to a less receptive audience.",     "driver": "cpm_increase",     "initial_confidence": 0.6,     "supporting_data_points": [       "Campaign_1 is a top campaign, so CPM fluctuations have a large impact.",       "Overall spend is high, suggesting competitive bidding."     ],     "required_checks": 
+2025-12-05 14:07:18 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:18 | DEBUG | 20251205T083659Z | InsightAgent LLM raw output preview: ```json
+[
+  {
+    "id": "hyp_ctr1",
+    "hypothesis": "CTR dropped in campaign_1 due to creative fatigue. Users are seeing the same ads repeatedly, leading to lower engagement.",
+    "driver": "creative_fatigue",
+    "initial_confidence": 0.7,
+    "supporting_data_points": [
+      "Campaign_1 is a top campaign, likely served frequently.",
+      "Date range is 3 months, providing ample time for fat
+2025-12-05 14:07:18 | INFO | 20251205T083659Z | InsightAgent: final hypotheses generated → 3
+2025-12-05 14:07:18 | INFO | 20251205T083659Z | Generated 3 hypotheses
+2025-12-05 14:07:18 | INFO | 20251205T083659Z | CreativeAgent: Generating creatives for campaign_1
+2025-12-05 14:07:18 | DEBUG | 20251205T083659Z | Creative prompt built for campaign=campaign_1
+2025-12-05 14:07:18 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:18 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+Role: Creative Improvement Generator.
+
+INPUT:
+- creatives_sample (list of existing creative messages)
+- campaign metadata (campaign_name, audience_type, country)
+
+GOAL:
+For the given campaign produce up to 6 creative candidates following schema:
+
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_X",
+    "creative_type": "image|video|carousel|text",
+    "headline": "...",
+    "body": "... (<=140 chars)",
+    "cta": "e.g., Shop Now",
+    "rationale": "Why this works (one sentence)",
+    "inspiration_refs": ["creative_message_id_..."]
+  }
+]
+
+CONSTRAINTS:
+- No false claims.
+- Body <= 140 chars.
+- Use dataset tone and selling points when available.
+- Output JSON only.
+
+
+CAMPAIGN: campaign_1
+REQUIRED_VARIATIONS: 4
+
+SAMPLE_CREATIVES:
+[{'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message': 'Breathable organic cotton that moves with you — limited offer on men briefs.', 'ctr': 0.0183}, {'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Video', 'creative_message': 'No ride‑up guarantee — best‑selling men briefs back in stock.', 'ctr': 0.0197}, {'campaign_name': 'Men  ComfortMax  Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'UGC', 'creative_message': 'Cooling mesh panels for workouts — men boxers you’ll actually love.', 'ctr': 0.0211}, {'campaign_name': 'Men_ComfortMax_Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message
+2025-12-05 14:07:24 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",     "cta": "Shop Now",     "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) for a broad appeal.",     "inspiration_refs": [       "creative_message_id_5",       "creative_message_id_11"     ]   },   {     "campaign": "campaign_1",     "creative_id": "cr_2",     "creative_type": "video",     "headline": "No Ride-Up, All-Day Comfort",     "body": "Our best-selling men's trunks are back! Enjoy a perfect fit and all-day comfort with our no ride-up guarantee. Limited stock!",     "cta": "Learn More",     "rationale": "Focuses on a specific benefit (no ride-up) and creates urgency with 'limited stock'.",     "inspiration_refs": [      
+2025-12-05 14:07:24 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:24 | DEBUG | 20251205T083659Z | LLM output snippet: ```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Sh
+2025-12-05 14:07:24 | INFO | 20251205T083659Z | CreativeAgent: dedupe → 4 uniques
+2025-12-05 14:07:24 | INFO | 20251205T083659Z | CreativeAgent: Final creatives count = 4
+2025-12-05 14:07:24 | INFO | 20251205T083659Z | Executing task t3 ()
+2025-12-05 14:07:24 | INFO | 20251205T083659Z | InsightAgent: generating hypotheses for task t3 (None)
+2025-12-05 14:07:24 | DEBUG | 20251205T083659Z | InsightAgent: local evidence → {'note': 'timeseries_exception', 'error': "'tuple' object has no attribute 'empty'", 'metric': 'creative_message'}
+2025-12-05 14:07:24 | DEBUG | 20251205T083659Z | InsightAgent prompt preview: You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.  Your responsibility: - Given a task from the Planner Agent - And the dataset summary → Generate 2–5 high-quality hypotheses explaining performance changes.  --- ## INPUTS - TASK: the planner-defined diagnostic step (JSON) - DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries  ---
+2025-12-05 14:07:24 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:24 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.
+
+Your responsibility:
+- Given a task from the Planner Agent
+- And the dataset summary
+→ Generate 2–5 high-quality hypotheses explaining performance changes.
+
+---
+## INPUTS
+- TASK: the planner-defined diagnostic step (JSON)
+- DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries
+
+---
+## OUTPUT FORMAT (JSON array only)
+
+[
+  {
+    "id": "hyp_<uuid or short id>",
+    "hypothesis": "Short explanation of a plausible performance driver",
+    "driver": "creative_fatigue | audience_fatigue | spend_shift | cpm_increase | ctr_drop | conversion_drop | platform_issue | country_shift | seasonal_effect | other",
+    "initial_confidence": 0.0–1.0,
+    "supporting_data_points": [
+      "example: CTR down 24% vs previous 7-day",
+      "example: Spend moved from Campaign A to Campaign B"
+    ],
+    "required_checks": [
+      "ctr_time_series",
+      "frequency_trend",
+      "creative_impressions_split",
+      "country_mix_change",
+      "platform_split",
+      "roas_change_point"
+    ]
+  }
+]
+
+---
+## INSTRUCTIONS
+- Produce 2 to 5 hypotheses.
+- Use the TASK.type to specialize the reasoning:
+  - timeseries → trends, change-points, rising/falling patterns
+  - metric_check → CTR, CPM, CPC, CR, ROAS deviations
+  - creative_analysis → fatigue, message redundancy, low CTR creatives
+  - audience_check → shift in audience_type, saturation, overlap
+  - platform_check → Instagram vs Facebook
+2025-12-05 14:07:28 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "id": "hyp_creative_fatigue_1",     "hypothesis": "Creative fatigue within 'campaign_1' is causing CTR to decline as users are repeatedly exposed to the same creative messages.",     "driver": "creative_fatigue",     "initial_confidence": 0.7,     "supporting_data_points": [       "Overall CTR is down in the last 2 weeks.",       "Campaign_1 is a top campaign by spend."     ],     "required_checks": [       "ctr_time_series",       "frequency_trend",       "creative_impressions_split"     ]   },   {     "id": "hyp_message_redundancy_2",     "hypothesis": "The creative messages used in 'campaign_1' may have become redundant or less appealing, leading to a decrease in CTR.",     "driver": "creative_fatigue",     "initial_confidence": 0.6,     "supporting_data_points": [       "CTR for campaign_1 is below average compared to other campaigns.",       "The same creative messages have been running for an extended period."     ],     "required_checks": [       "creative_impr
+2025-12-05 14:07:28 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:28 | DEBUG | 20251205T083659Z | InsightAgent LLM raw output preview: ```json
+[
+  {
+    "id": "hyp_creative_fatigue_1",
+    "hypothesis": "Creative fatigue within 'campaign_1' is causing CTR to decline as users are repeatedly exposed to the same creative messages.",
+    "driver": "creative_fatigue",
+    "initial_confidence": 0.7,
+    "supporting_data_points": [
+      "Overall CTR is down in the last 2 weeks.",
+      "Campaign_1 is a top campaign by spend."
+    ],
+  
+2025-12-05 14:07:28 | INFO | 20251205T083659Z | InsightAgent: final hypotheses generated → 3
+2025-12-05 14:07:28 | INFO | 20251205T083659Z | Generated 3 hypotheses
+2025-12-05 14:07:28 | INFO | 20251205T083659Z | CreativeAgent: Generating creatives for campaign_1
+2025-12-05 14:07:28 | DEBUG | 20251205T083659Z | Creative prompt built for campaign=campaign_1
+2025-12-05 14:07:28 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:28 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+Role: Creative Improvement Generator.
+
+INPUT:
+- creatives_sample (list of existing creative messages)
+- campaign metadata (campaign_name, audience_type, country)
+
+GOAL:
+For the given campaign produce up to 6 creative candidates following schema:
+
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_X",
+    "creative_type": "image|video|carousel|text",
+    "headline": "...",
+    "body": "... (<=140 chars)",
+    "cta": "e.g., Shop Now",
+    "rationale": "Why this works (one sentence)",
+    "inspiration_refs": ["creative_message_id_..."]
+  }
+]
+
+CONSTRAINTS:
+- No false claims.
+- Body <= 140 chars.
+- Use dataset tone and selling points when available.
+- Output JSON only.
+
+
+CAMPAIGN: campaign_1
+REQUIRED_VARIATIONS: 4
+
+SAMPLE_CREATIVES:
+[{'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message': 'Breathable organic cotton that moves with you — limited offer on men briefs.', 'ctr': 0.0183}, {'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Video', 'creative_message': 'No ride‑up guarantee — best‑selling men briefs back in stock.', 'ctr': 0.0197}, {'campaign_name': 'Men  ComfortMax  Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'UGC', 'creative_message': 'Cooling mesh panels for workouts — men boxers you’ll actually love.', 'ctr': 0.0211}, {'campaign_name': 'Men_ComfortMax_Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message
+2025-12-05 14:07:33 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",     "cta": "Shop Now",     "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) appealing to active men.",     "inspiration_refs": [       "creative_message_id_5",       "creative_message_id_4"     ]   },   {     "campaign": "campaign_1",     "creative_id": "cr_2",     "creative_type": "video",     "headline": "No Ride-Up, All-Day Comfort",     "body": "Our best-selling men's trunks are back! Featuring a no ride-up guarantee and superior comfort. Upgrade your underwear drawer today.",     "cta": "Learn More",     "rationale": "Addresses a common pain point (ride-up) and promotes the product's comfort and popularity.",     "inspiratio
+2025-12-05 14:07:33 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:33 | DEBUG | 20251205T083659Z | LLM output snippet: ```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Sh
+2025-12-05 14:07:33 | INFO | 20251205T083659Z | CreativeAgent: dedupe → 4 uniques
+2025-12-05 14:07:33 | INFO | 20251205T083659Z | CreativeAgent: Final creatives count = 4
+2025-12-05 14:07:33 | INFO | 20251205T083659Z | CreativeAgent: Generating creatives for campaign_1
+2025-12-05 14:07:33 | DEBUG | 20251205T083659Z | Creative prompt built for campaign=campaign_1
+2025-12-05 14:07:33 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:33 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+Role: Creative Improvement Generator.
+
+INPUT:
+- creatives_sample (list of existing creative messages)
+- campaign metadata (campaign_name, audience_type, country)
+
+GOAL:
+For the given campaign produce up to 6 creative candidates following schema:
+
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_X",
+    "creative_type": "image|video|carousel|text",
+    "headline": "...",
+    "body": "... (<=140 chars)",
+    "cta": "e.g., Shop Now",
+    "rationale": "Why this works (one sentence)",
+    "inspiration_refs": ["creative_message_id_..."]
+  }
+]
+
+CONSTRAINTS:
+- No false claims.
+- Body <= 140 chars.
+- Use dataset tone and selling points when available.
+- Output JSON only.
+
+
+CAMPAIGN: campaign_1
+REQUIRED_VARIATIONS: 4
+
+SAMPLE_CREATIVES:
+[{'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message': 'Breathable organic cotton that moves with you — limited offer on men briefs.', 'ctr': 0.0183}, {'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Video', 'creative_message': 'No ride‑up guarantee — best‑selling men briefs back in stock.', 'ctr': 0.0197}, {'campaign_name': 'Men  ComfortMax  Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'UGC', 'creative_message': 'Cooling mesh panels for workouts — men boxers you’ll actually love.', 'ctr': 0.0211}, {'campaign_name': 'Men_ComfortMax_Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message
+2025-12-05 14:07:39 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Shop now!",     "cta": "Shop Now",     "rationale": "Highlights key features (breathable, sweat-wicking) and benefits (comfort, performance) for a broad appeal.",     "inspiration_refs": [       "creative_message_id_5",       "creative_message_id_11"     ]   },   {     "campaign": "campaign_1",     "creative_id": "cr_2",     "creative_type": "video",     "headline": "No Ride-Up, All-Day Comfort",     "body": "Our best-selling men's trunks are back! Enjoy a perfect fit and all-day comfort with our no ride-up guarantee. Limited stock!",     "cta": "Learn More",     "rationale": "Focuses on a specific benefit (no ride-up) and creates urgency with 'limited stock'.",     "inspiration_refs": [      
+2025-12-05 14:07:39 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:39 | DEBUG | 20251205T083659Z | LLM output snippet: ```json [   {     "campaign": "campaign_1",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "ComfortMax: Engineered for Performance",     "body": "Experience ultimate comfort with our breathable, sweat-wicking men's athletic briefs. Perfect for workouts and everyday wear. Sh
+2025-12-05 14:07:39 | INFO | 20251205T083659Z | CreativeAgent: dedupe → 4 uniques
+2025-12-05 14:07:39 | INFO | 20251205T083659Z | CreativeAgent: Final creatives count = 4
+2025-12-05 14:07:39 | INFO | 20251205T083659Z | Executing task t4 ()
+2025-12-05 14:07:39 | INFO | 20251205T083659Z | InsightAgent: generating hypotheses for task t4 (None)
+2025-12-05 14:07:39 | DEBUG | 20251205T083659Z | InsightAgent: local evidence → {'note': 'timeseries_exception', 'error': "'tuple' object has no attribute 'empty'", 'metric': 'audience'}
+2025-12-05 14:07:39 | DEBUG | 20251205T083659Z | InsightAgent prompt preview: You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.  Your responsibility: - Given a task from the Planner Agent - And the dataset summary → Generate 2–5 high-quality hypotheses explaining performance changes.  --- ## INPUTS - TASK: the planner-defined diagnostic step (JSON) - DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries  ---
+2025-12-05 14:07:39 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:39 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.
+
+Your responsibility:
+- Given a task from the Planner Agent
+- And the dataset summary
+→ Generate 2–5 high-quality hypotheses explaining performance changes.
+
+---
+## INPUTS
+- TASK: the planner-defined diagnostic step (JSON)
+- DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries
+
+---
+## OUTPUT FORMAT (JSON array only)
+
+[
+  {
+    "id": "hyp_<uuid or short id>",
+    "hypothesis": "Short explanation of a plausible performance driver",
+    "driver": "creative_fatigue | audience_fatigue | spend_shift | cpm_increase | ctr_drop | conversion_drop | platform_issue | country_shift | seasonal_effect | other",
+    "initial_confidence": 0.0–1.0,
+    "supporting_data_points": [
+      "example: CTR down 24% vs previous 7-day",
+      "example: Spend moved from Campaign A to Campaign B"
+    ],
+    "required_checks": [
+      "ctr_time_series",
+      "frequency_trend",
+      "creative_impressions_split",
+      "country_mix_change",
+      "platform_split",
+      "roas_change_point"
+    ]
+  }
+]
+
+---
+## INSTRUCTIONS
+- Produce 2 to 5 hypotheses.
+- Use the TASK.type to specialize the reasoning:
+  - timeseries → trends, change-points, rising/falling patterns
+  - metric_check → CTR, CPM, CPC, CR, ROAS deviations
+  - creative_analysis → fatigue, message redundancy, low CTR creatives
+  - audience_check → shift in audience_type, saturation, overlap
+  - platform_check → Instagram vs Facebook
+2025-12-05 14:07:42 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "id": "hyp_aud1",     "hypothesis": "Audience saturation within 'campaign_1' is causing diminishing ROAS.",     "driver": "audience_fatigue",     "initial_confidence": 0.7,     "supporting_data_points": [       "ROAS declining in recent weeks for campaign_1",       "No significant audience expansion or refresh in campaign_1 recently"     ],     "required_checks": [       "frequency_trend",       "roas_change_point",       "audience_overlap_analysis"     ]   },   {     "id": "hyp_aud2",     "hypothesis": "A shift in the demographic mix within 'campaign_1' (e.g., age, gender, interests) is negatively impacting ROAS.",     "driver": "audience_shift",     "initial_confidence": 0.6,     "supporting_data_points": [       "ROAS declining in recent weeks for campaign_1",       "No recent changes to targeting settings were recorded"     ],     "required_checks": [       "age_gender_roas_correlation",       "interests_roas_correlation",       "audience_demographics_trend"     ]
+2025-12-05 14:07:42 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:42 | DEBUG | 20251205T083659Z | InsightAgent LLM raw output preview: ```json
+[
+  {
+    "id": "hyp_aud1",
+    "hypothesis": "Audience saturation within 'campaign_1' is causing diminishing ROAS.",
+    "driver": "audience_fatigue",
+    "initial_confidence": 0.7,
+    "supporting_data_points": [
+      "ROAS declining in recent weeks for campaign_1",
+      "No significant audience expansion or refresh in campaign_1 recently"
+    ],
+    "required_checks": [
+      "frequen
+2025-12-05 14:07:42 | INFO | 20251205T083659Z | InsightAgent: final hypotheses generated → 3
+2025-12-05 14:07:42 | INFO | 20251205T083659Z | Generated 3 hypotheses
+2025-12-05 14:07:42 | INFO | 20251205T083659Z | Executing task t5 ()
+2025-12-05 14:07:42 | INFO | 20251205T083659Z | InsightAgent: generating hypotheses for task t5 (None)
+2025-12-05 14:07:42 | DEBUG | 20251205T083659Z | InsightAgent: local evidence → {'note': 'timeseries_exception', 'error': "'tuple' object has no attribute 'empty'", 'metric': 'roas'}
+2025-12-05 14:07:42 | DEBUG | 20251205T083659Z | InsightAgent prompt preview: You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.  Your responsibility: - Given a task from the Planner Agent - And the dataset summary → Generate 2–5 high-quality hypotheses explaining performance changes.  --- ## INPUTS - TASK: the planner-defined diagnostic step (JSON) - DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries  ---
+2025-12-05 14:07:42 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:42 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.
+
+Your responsibility:
+- Given a task from the Planner Agent
+- And the dataset summary
+→ Generate 2–5 high-quality hypotheses explaining performance changes.
+
+---
+## INPUTS
+- TASK: the planner-defined diagnostic step (JSON)
+- DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries
+
+---
+## OUTPUT FORMAT (JSON array only)
+
+[
+  {
+    "id": "hyp_<uuid or short id>",
+    "hypothesis": "Short explanation of a plausible performance driver",
+    "driver": "creative_fatigue | audience_fatigue | spend_shift | cpm_increase | ctr_drop | conversion_drop | platform_issue | country_shift | seasonal_effect | other",
+    "initial_confidence": 0.0–1.0,
+    "supporting_data_points": [
+      "example: CTR down 24% vs previous 7-day",
+      "example: Spend moved from Campaign A to Campaign B"
+    ],
+    "required_checks": [
+      "ctr_time_series",
+      "frequency_trend",
+      "creative_impressions_split",
+      "country_mix_change",
+      "platform_split",
+      "roas_change_point"
+    ]
+  }
+]
+
+---
+## INSTRUCTIONS
+- Produce 2 to 5 hypotheses.
+- Use the TASK.type to specialize the reasoning:
+  - timeseries → trends, change-points, rising/falling patterns
+  - metric_check → CTR, CPM, CPC, CR, ROAS deviations
+  - creative_analysis → fatigue, message redundancy, low CTR creatives
+  - audience_check → shift in audience_type, saturation, overlap
+  - platform_check → Instagram vs Facebook
+2025-12-05 14:07:47 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "id": "hyp_roas_drop_men_premium_modal_1",     "hypothesis": "ROAS decreased in 'Men Premium Modal' campaign due to creative fatigue, leading to lower CTR and conversion rates.",     "driver": "creative_fatigue",     "initial_confidence": 0.7,     "supporting_data_points": [       "Top campaign by spend: Men Premium Modal",       "Date range: 2025-01-01 to 2025-03-31"     ],     "required_checks": [       "ctr_time_series",       "frequency_trend",       "creative_impressions_split",       "roas_change_point"     ]   },   {     "id": "hyp_roas_drop_men_premium_modal_2",     "hypothesis": "A shift in spend allocation away from 'Men Premium Modal' to other campaigns (e.g., 'Men Bold Colors Drop') caused the ROAS decline.",     "driver": "spend_shift",     "initial_confidence": 0.6,     "supporting_data_points": [       "Top campaign by spend: Men Premium Modal",       "Other top campaigns: Men Bold Colors Drop, MEN Signature Soft"     ],     "required_checks": [       "
+2025-12-05 14:07:47 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:47 | DEBUG | 20251205T083659Z | InsightAgent LLM raw output preview: ```json
+[
+  {
+    "id": "hyp_roas_drop_men_premium_modal_1",
+    "hypothesis": "ROAS decreased in 'Men Premium Modal' campaign due to creative fatigue, leading to lower CTR and conversion rates.",
+    "driver": "creative_fatigue",
+    "initial_confidence": 0.7,
+    "supporting_data_points": [
+      "Top campaign by spend: Men Premium Modal",
+      "Date range: 2025-01-01 to 2025-03-31"
+    ],
+    
+2025-12-05 14:07:47 | INFO | 20251205T083659Z | InsightAgent: final hypotheses generated → 3
+2025-12-05 14:07:47 | INFO | 20251205T083659Z | Generated 3 hypotheses
+2025-12-05 14:07:47 | INFO | 20251205T083659Z | CreativeAgent: Generating creatives for Men Premium Modal
+2025-12-05 14:07:47 | DEBUG | 20251205T083659Z | Creative prompt built for campaign=Men Premium Modal
+2025-12-05 14:07:47 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:47 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+Role: Creative Improvement Generator.
+
+INPUT:
+- creatives_sample (list of existing creative messages)
+- campaign metadata (campaign_name, audience_type, country)
+
+GOAL:
+For the given campaign produce up to 6 creative candidates following schema:
+
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_X",
+    "creative_type": "image|video|carousel|text",
+    "headline": "...",
+    "body": "... (<=140 chars)",
+    "cta": "e.g., Shop Now",
+    "rationale": "Why this works (one sentence)",
+    "inspiration_refs": ["creative_message_id_..."]
+  }
+]
+
+CONSTRAINTS:
+- No false claims.
+- Body <= 140 chars.
+- Use dataset tone and selling points when available.
+- Output JSON only.
+
+
+CAMPAIGN: Men Premium Modal
+REQUIRED_VARIATIONS: 4
+
+SAMPLE_CREATIVES:
+[{'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message': 'Breathable organic cotton that moves with you — limited offer on men briefs.', 'ctr': 0.0183}, {'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Video', 'creative_message': 'No ride‑up guarantee — best‑selling men briefs back in stock.', 'ctr': 0.0197}, {'campaign_name': 'Men  ComfortMax  Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'UGC', 'creative_message': 'Cooling mesh panels for workouts — men boxers you’ll actually love.', 'ctr': 0.0211}, {'campaign_name': 'Men_ComfortMax_Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_
+2025-12-05 14:07:51 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "campaign": "Men Premium Modal",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "Experience Premium Comfort",     "body": "Upgrade your underwear drawer with our luxuriously soft modal fabric. Breathable, supportive, and feels amazing all day. Shop now!",     "cta": "Shop Now",     "rationale": "Highlights the premium material and all-day comfort, key selling points for modal underwear.",     "inspiration_refs": []   },   {     "campaign": "Men Premium Modal",     "creative_id": "cr_2",     "creative_type": "video",     "headline": "The Ultimate in Softness",     "body": "Introducing our Premium Modal collection. Experience unmatched comfort and a perfect fit. Find your new favorite underwear today!",     "cta": "Learn More",     "rationale": "Focuses on the softness and fit, encouraging viewers to explore the collection.",     "inspiration_refs": []   },   {     "campaign": "Men Premium Modal",     "creative_id": "cr_3",     "creative_type":
+2025-12-05 14:07:51 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:51 | DEBUG | 20251205T083659Z | LLM output snippet: ```json [   {     "campaign": "Men Premium Modal",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "Experience Premium Comfort",     "body": "Upgrade your underwear drawer with our luxuriously soft modal fabric. Breathable, supportive, and feels amazing all day. Shop now!", 
+2025-12-05 14:07:51 | INFO | 20251205T083659Z | CreativeAgent: dedupe → 4 uniques
+2025-12-05 14:07:51 | INFO | 20251205T083659Z | CreativeAgent: Final creatives count = 4
+2025-12-05 14:07:51 | INFO | 20251205T083659Z | Executing task t6 ()
+2025-12-05 14:07:51 | INFO | 20251205T083659Z | InsightAgent: generating hypotheses for task t6 (None)
+2025-12-05 14:07:51 | DEBUG | 20251205T083659Z | InsightAgent: local evidence → {'note': 'timeseries_exception', 'error': "'tuple' object has no attribute 'empty'", 'metric': 'roas'}
+2025-12-05 14:07:51 | DEBUG | 20251205T083659Z | InsightAgent prompt preview: You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.  Your responsibility: - Given a task from the Planner Agent - And the dataset summary → Generate 2–5 high-quality hypotheses explaining performance changes.  --- ## INPUTS - TASK: the planner-defined diagnostic step (JSON) - DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries  ---
+2025-12-05 14:07:51 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:51 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+You are the Insight Agent for Kasparro’s Agentic FB Ads Analyst System.
+
+Your responsibility:
+- Given a task from the Planner Agent
+- And the dataset summary
+→ Generate 2–5 high-quality hypotheses explaining performance changes.
+
+---
+## INPUTS
+- TASK: the planner-defined diagnostic step (JSON)
+- DATA_SUMMARY: includes date range, top campaigns, ROAS, CTR, spend, creatives, platform, countries
+
+---
+## OUTPUT FORMAT (JSON array only)
+
+[
+  {
+    "id": "hyp_<uuid or short id>",
+    "hypothesis": "Short explanation of a plausible performance driver",
+    "driver": "creative_fatigue | audience_fatigue | spend_shift | cpm_increase | ctr_drop | conversion_drop | platform_issue | country_shift | seasonal_effect | other",
+    "initial_confidence": 0.0–1.0,
+    "supporting_data_points": [
+      "example: CTR down 24% vs previous 7-day",
+      "example: Spend moved from Campaign A to Campaign B"
+    ],
+    "required_checks": [
+      "ctr_time_series",
+      "frequency_trend",
+      "creative_impressions_split",
+      "country_mix_change",
+      "platform_split",
+      "roas_change_point"
+    ]
+  }
+]
+
+---
+## INSTRUCTIONS
+- Produce 2 to 5 hypotheses.
+- Use the TASK.type to specialize the reasoning:
+  - timeseries → trends, change-points, rising/falling patterns
+  - metric_check → CTR, CPM, CPC, CR, ROAS deviations
+  - creative_analysis → fatigue, message redundancy, low CTR creatives
+  - audience_check → shift in audience_type, saturation, overlap
+  - platform_check → Instagram vs Facebook
+2025-12-05 14:07:55 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "id": "hyp_roas1",     "hypothesis": "ROAS drop in 'Men Bold Colors Drop' campaign is due to creative fatigue, as the same creatives have been running for an extended period.",     "driver": "creative_fatigue",     "initial_confidence": 0.7,     "supporting_data_points": [       "Campaign 'Men Bold Colors Drop' is a top spender.",       "Date range spans 3 months, increasing likelihood of creative fatigue."     ],     "required_checks": [       "creative_impressions_split",       "ctr_time_series",       "frequency_trend",       "roas_change_point"     ]   },   {     "id": "hyp_roas2",     "hypothesis": "Increased CPM is driving down ROAS for the 'Men Bold Colors Drop' campaign.",     "driver": "cpm_increase",     "initial_confidence": 0.6,     "supporting_data_points": [       "Campaign 'Men Bold Colors Drop' is a top spender.",       "Overall ROAS is being targeted, suggesting a potential efficiency issue."     ],     "required_checks": [       "ctr_time_series",   
+2025-12-05 14:07:55 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:07:55 | DEBUG | 20251205T083659Z | InsightAgent LLM raw output preview: ```json
+[
+  {
+    "id": "hyp_roas1",
+    "hypothesis": "ROAS drop in 'Men Bold Colors Drop' campaign is due to creative fatigue, as the same creatives have been running for an extended period.",
+    "driver": "creative_fatigue",
+    "initial_confidence": 0.7,
+    "supporting_data_points": [
+      "Campaign 'Men Bold Colors Drop' is a top spender.",
+      "Date range spans 3 months, increasing like
+2025-12-05 14:07:55 | INFO | 20251205T083659Z | InsightAgent: final hypotheses generated → 3
+2025-12-05 14:07:55 | INFO | 20251205T083659Z | Generated 3 hypotheses
+2025-12-05 14:07:55 | INFO | 20251205T083659Z | CreativeAgent: Generating creatives for Men Bold Colors Drop
+2025-12-05 14:07:55 | DEBUG | 20251205T083659Z | Creative prompt built for campaign=Men Bold Colors Drop
+2025-12-05 14:07:55 | INFO | 20251205T083659Z | [LLM] Attempt 1/3
+2025-12-05 14:07:55 | DEBUG | 20251205T083659Z | [LLM] Prompt:
+Role: Creative Improvement Generator.
+
+INPUT:
+- creatives_sample (list of existing creative messages)
+- campaign metadata (campaign_name, audience_type, country)
+
+GOAL:
+For the given campaign produce up to 6 creative candidates following schema:
+
+[
+  {
+    "campaign": "campaign_1",
+    "creative_id": "cr_X",
+    "creative_type": "image|video|carousel|text",
+    "headline": "...",
+    "body": "... (<=140 chars)",
+    "cta": "e.g., Shop Now",
+    "rationale": "Why this works (one sentence)",
+    "inspiration_refs": ["creative_message_id_..."]
+  }
+]
+
+CONSTRAINTS:
+- No false claims.
+- Body <= 140 chars.
+- Use dataset tone and selling points when available.
+- Output JSON only.
+
+
+CAMPAIGN: Men Bold Colors Drop
+REQUIRED_VARIATIONS: 4
+
+SAMPLE_CREATIVES:
+[{'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creative_message': 'Breathable organic cotton that moves with you — limited offer on men briefs.', 'ctr': 0.0183}, {'campaign_name': 'Men ComfortMax Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Video', 'creative_message': 'No ride‑up guarantee — best‑selling men briefs back in stock.', 'ctr': 0.0197}, {'campaign_name': 'Men  ComfortMax  Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'UGC', 'creative_message': 'Cooling mesh panels for workouts — men boxers you’ll actually love.', 'ctr': 0.0211}, {'campaign_name': 'Men_ComfortMax_Launch', 'adset_name': 'Adset-1 Retarget', 'creative_type': 'Image', 'creati
+2025-12-05 14:08:00 | DEBUG | 20251205T083659Z | [LLM] Response:
+```json [   {     "campaign": "Men Bold Colors Drop",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "Bold Colors. Unbeatable Comfort.",     "body": "Express yourself with our new collection of men's underwear in vibrant, bold colors. Experience the ComfortMax difference!",     "cta": "Shop Now",     "rationale": "This creative highlights the new product feature (bold colors) while reinforcing the ComfortMax brand promise.",     "inspiration_refs": []   },   {     "campaign": "Men Bold Colors Drop",     "creative_id": "cr_2",     "creative_type": "video",     "headline": "Dare to be Bold. Feel the Comfort.",     "body": "Introducing our boldest colors yet!  ComfortMax men's underwear: breathable, supportive, and ready for anything. Shop the drop!",     "cta": "See the Colors",     "rationale": "Video format allows showcasing the colors in motion and emphasizes the feeling of comfort.",     "inspiration_refs": []   },   {     "campaign": "Men Bold Colors Drop",
+2025-12-05 14:08:00 | WARNING | 20251205T083659Z | [LLM] Could not extract token usage metadata
+2025-12-05 14:08:00 | DEBUG | 20251205T083659Z | LLM output snippet: ```json [   {     "campaign": "Men Bold Colors Drop",     "creative_id": "cr_1",     "creative_type": "image",     "headline": "Bold Colors. Unbeatable Comfort.",     "body": "Express yourself with our new collection of men's underwear in vibrant, bold colors. Experience the ComfortMax difference!",
+2025-12-05 14:08:00 | INFO | 20251205T083659Z | CreativeAgent: dedupe → 4 uniques
+2025-12-05 14:08:00 | INFO | 20251205T083659Z | CreativeAgent: Final creatives count = 4
+2025-12-05 14:08:00 | INFO | 20251205T083659Z | === Pipeline completed successfully ===

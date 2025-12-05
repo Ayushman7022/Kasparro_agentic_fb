@@ -1,0 +1,13 @@
+{
+  "run_id": "20251205T083659Z",
+  "query": "Analyze ROAS drop for campaign_1",
+  "timestamp": "2025-12-05T08:36:59.496645",
+  "errors": [],
+  "tasks_executed": [],
+  "git_commit": "89b00021481dffbaf5fcbca372ecbdbe8e3f5f48",
+  "artifacts": {
+    "insights": "reports\\insights_20251205T083659Z.json",
+    "creatives": "reports\\creatives_20251205T083659Z.json",
+    "report": "reports\\report_20251205T083659Z.md"
+  }
+}
