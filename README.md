@@ -39,50 +39,56 @@ Outputs will be written to:
 
 🧠 System Design (Short & Clear)
 Architecture (5–7 bullets)
-
-Planner Agent
-
-Converts the user query into structured tasks (JSON)
-
-Applies dependency ordering
-
-DataAgent
-
-Loads dataset, validates schema, produces summary
-
-Provides campaign-level time series & creative samples
-
-Insight Agent
-
-Computes local evidence (CTR deltas, means, change-points)
-
-Combines heuristics + LLM prompting to produce hypotheses
-
-Evaluator Agent
-
-Runs statistical tests (t-test / bootstrap)
-
-Computes effect size, relative change, impact score
-
-Returns ValidationResult with complete evidence block
-
-Creative Agent
-
-Generates creative variations for validated “creative_fatigue” insights
-
-Deduplication + retries + creative_id assignment
-
-Orchestrator
-
-Coordinates the entire pipeline
-
-Attaches logger, handles errors, writes artifacts, and builds reports
-
-Observability Layer
-
-Every agent produces local logs
-
-Metadata includes run ID, query, schema validity, and git commit hash
+                          ┌──────────────────────────────┐
+                          │          User Input           │
+                          │  (Prompt / Task / Query)      │
+                          └──────────────┬───────────────┘
+                                         │
+                                         ▼
+                          ┌──────────────────────────────┐
+                          │        Orchestrator          │
+                          │  src/orchestrator/           │
+                          │  - orchestrator.py           │
+                          └──────────────┬───────────────┘
+                          │ Selects / Routes tasks to agents
+                          ▼
+        ┌──────────────────────────┬──────────────────────────┬──────────────────────────┐
+        ▼                          ▼                          ▼                          ▼
+┌──────────────────┐     ┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│  Planner Agent    │     │  Data Agent      │      │ Insight Agent    │      │ Evaluator Agent  │
+│ src/agents/       │     │ src/agents/      │      │ src/agents/      │      │ src/agents/      │
+│ - planner.py      │     │ - data_agent.py  │      │ - insight_agent.py│     │ - evaluator.py   │
+│ Generates plan /  │     │ Fetches, cleans, │      │ Produces insights │      │ Scores, rates,   │
+│ breaks task down  │     │ validates data   │      │ + summaries       │      │ validates output  │
+└─────────┬──────────┘     └─────────┬────────┘      └─────────┬────────┘      └─────────┬────────┘
+          │                          │                         │                         │
+          └───────────────┬──────────┴───────────┬─────────────┴───────────────┬─────────┘
+                          │                      │                               │
+                          ▼                      ▼                               ▼
+                ┌──────────────────┐    ┌──────────────────┐         ┌────────────────────┐
+                │ Creative Agent    │    │ Schema Validator  │         │ Utility Layer       │
+                │ src/agents/       │    │ src/utils/schema_│         │ src/utils/          │
+                │ - creative_agent.py│   │ validator.py      │         │ - schemas.py        │
+                │ Generates content │    │ Validates data    │         │ - helpers, shared   │
+                └─────────┬────────┘    └─────────┬────────┘         └─────────┬──────────┘
+                          │                      │                              │
+                          ▼                      ▼                              ▼
+                ┌──────────────────────────────────────────────────────────────────────┐
+                │                 Data Models / Schemas (YAML/JSON)                    │
+                │                      config/data_schema.yaml                         │
+                └──────────────────────────────────────────────────────────────────────┘
+                                                │
+                                                ▼
+                                 ┌───────────────────────────────────┐
+                                 │       Orchestrator Output         │
+                                 │ (Reports, logs, final responses)  │
+                                 │ logs/, reports/                   │
+                                 └───────────────────────────────────┘
+                                                │
+                                                ▼
+                             ┌──────────────────────────────────────────┐
+                             │              User Output                 │
+                             └──────────────────────────────────────────┘
 
 📁 Folder Structure
 kasparro-fb-analyst/
