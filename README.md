@@ -38,45 +38,10 @@ Outputs will be written to:
 /logs/<run_id>/
 
 🧠 System Design (Short & Clear)
-                         flowchart TD
+             ![System Design](flow_diagram.png)
+           
 
-    UserInput["User Input<br/>(Prompt / Task / Query)"]
-
-    Orchestrator["Orchestrator<br/>src/orchestrator/orchestrator.py<br/>- Routes tasks<br/>- Manages pipeline flow"]
-
-    Planner["Planner Agent<br/>src/agents/planner.py<br/>- Breaks task into steps"]
-    DataAgent["Data Agent<br/>src/agents/data_agent.py<br/>- Loads & validates FB Ads dataset"]
-    Insight["Insight Agent<br/>src/agents/insight_agent.py<br/>- Runs stats tests<br/>- Detects performance drops"]
-    Evaluator["Evaluator Agent<br/>src/agents/evaluator.py<br/>- Scores insights<br/>- Validates hypotheses"]
-
-    Creative["Creative Agent<br/>src/agents/creative_agent.py<br/>- Generates creatives"]
-    SchemaValidator["Schema Validator<br/>src/utils/schema_validator.py<br/>- Enforces YAML/JSON schema rules"]
-    Utils["Utils Layer<br/>src/utils/<br/>- schemas.py<br/>- llm.py<br/>- logger.py"]
-
-    Schemas["Data Models / Schemas<br/>config/data_schema.yaml"]
-
-    OutputLayer["Orchestrator Output Layer<br/>reports/, logs/<run_id>/, JSON/MD reports"]
-    UserOutput["User Output<br/>(Insights, Reports, Creatives)"]
-
-    UserInput --> Orchestrator
-
-    Orchestrator --> Planner
-    Orchestrator --> DataAgent
-    Orchestrator --> Insight
-    Orchestrator --> Evaluator
-
-    Planner --> Creative
-    DataAgent --> SchemaValidator
-    Insight --> Utils
-    Evaluator --> Utils
-
-    Creative --> Schemas
-    SchemaValidator --> Schemas
-    Utils --> Schemas
-
-    Schemas --> OutputLayer
-    OutputLayer --> UserOutput
-
+    
 
 📁 Folder Structure
 kasparro-fb-analyst/
